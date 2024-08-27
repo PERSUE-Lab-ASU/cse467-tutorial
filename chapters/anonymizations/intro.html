@@ -381,8 +381,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-examples">1.1. Motivating examples</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medical-data-linking-taken-from-sweeneykanon-2002">1.1.1. Medical data linking (Taken from <span class="xref cite">sweeneyKanon-2002</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-search-log">1.1.2. Web search log</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netflix">1.1.3. Netflix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netflix-challenge">1.1.3. Netflix challenge</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#genome-data-leak">1.1.4. Genome data leak</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-your-friends">1.1.5. Find your friends</a></li>
 </ul>
 </li>
 </ul>
@@ -400,7 +401,7 @@ document.write(`
 <h1><span class="section-number">1. </span>Anonymization techniques<a class="headerlink" href="#anonymization-techniques" title="Link to this heading">#</a></h1>
 <section id="motivating-examples">
 <h2><span class="section-number">1.1. </span>Motivating examples<a class="headerlink" href="#motivating-examples" title="Link to this heading">#</a></h2>
-<p>These examples were taken from various other sources (<span id="id1">[<a class="reference internal" href="../dp/0-dp-main.html#id1046" title="Ninghui Li, Min Lyu, Dong Su, and Weining Yang. Differential Privacy: From Theory to Practice. Springer, 2017.">LLSY17</a>]</span>).</p>
+<p>These examples were taken from various other sources (<span id="id1">[<a class="reference internal" href="../dp/0-dp-main.html#id1044" title="Ninghui Li, Min Lyu, Dong Su, and Weining Yang. Differential Privacy: From Theory to Practice. Springer, 2017.">LLSY17</a>]</span>).</p>
 <section id="medical-data-linking-taken-from-sweeneykanon-2002">
 <h3><span class="section-number">1.1.1. </span>Medical data linking (Taken from <span id="id2">[]</span>)<a class="headerlink" href="#medical-data-linking-taken-from-sweeneykanon-2002" title="Link to this heading">#</a></h3>
 <p>The National Association of Health Data Organizations (NAHDO) reported
@@ -410,16 +411,7 @@ hospitals, physicians offices, clinics, and so on. The leftmost circle in
 the figure below contains a subset of the fields of information, or attributes, that
 NAHDO recommends these states collect; these attributes include the
 patient’s ZIP code, birth date, gender, and ethnicity.</p>
-<p>In Massachusetts, the Group Insurance Commission (GIC) is responsible
-for purchasing health insurance for state employees. GIC collected patientspecific
-data with nearly one hundred attributes per encounter along the lines
-of the those shown in the leftmost circle of Figure 1 for approximately
-135,000 state employees and their families. Because the data were believed to
-be anonymous, GIC gave a copy of the data to researchers and sold a copy to
-industry. For twenty dollars I purchased the voter registration list for Cambridge
-Massachusetts and received the information on two diskettes. The
-rightmost circle in Figure 1 shows that these data included the name, address,
-ZIP code, birth date, and gender of each voter. This information can be linked
+<p>In Massachusetts, the Group Insurance Commission (GIC) buys health insurance for state employees. GIC collected nearly one hundred attributes from approximately 135,000 state employees and their families. Because the data were believed to be anonymous, GIC gave a copy of the data to researchers and sold a copy to industry. For twenty dollars, the researcher (SWEENEY) purchased the voter registration list for Cambridge Massachusetts and received the information on two diskettes. The rightmost circle in the Figure below shows that these data included the name, address, ZIP code, birth date, and gender of each voter. This information can be linked
 using ZIP code, birth date and gender to the medical information, thereby linking diagnosis, procedures, and medications to particularly named individuals.</p>
 <figure class="align-default" id="id1180">
 <a class="reference internal image-reference" href="../../_images/hospital-voter.png"><img alt="../../_images/hospital-voter.png" src="../../_images/hospital-voter.png" style="height: 400px;" /></a>
@@ -435,10 +427,8 @@ only one in his 5-digit ZIP code.</p>
 </section>
 <section id="web-search-log">
 <h3><span class="section-number">1.1.2. </span>Web search log<a class="headerlink" href="#web-search-log" title="Link to this heading">#</a></h3>
-<p>Another well-known privacy incident came from publishing web search logs. In 2006, AOL
-released three months of search logs involving 650,000 users. The main privacy protection technique
-used is replacing user ids with random numbers. This proved to be a failure. Two New
-York Times journalists, Barbaro and Tom Zeller [2006], were able to re-identify elma Arnold,
+<p>In 2006, AOL released three months of web search logs from 650,000 users. To prevent identification, the user ids were replaced with random numbers. This proved to be a failure. Two New
+York Times journalists, Barbaro and Tom Zeller, were able to re-identify Thelma Arnold,
 a 62-year-old women living in Lilburn, GA, from the published search logs. Ms. Arnold’s search
 log includes her last name and location names near where she lived. The reporters were able to
 cross-reference this information with phonebook entries. After the New York Times article had
@@ -446,40 +436,34 @@ been published, the data was immediately retracted by AOL. Later a class action 
 filed against AOL. This scandal led to the resignation of AOL’s CTO and the dismissal of two
 employees.</p>
 </section>
-<section id="netflix">
-<h3><span class="section-number">1.1.3. </span>Netflix<a class="headerlink" href="#netflix" title="Link to this heading">#</a></h3>
-<p>In 2009, Netflix released a dataset containing the movie rating data from 500,000 users
-as part of a one-million dollar challenge to the data mining research community for developing
-effective algorithms for predicting users’ movie preferences based on their viewing history
-and ratings. While the data was anonymized in order to protect users’ privacy, Narayanan and
-Shmatikov [2008] showed that an adversary having some knowledge about a subscriber’s movie
-viewing experience can easily identify the subscriber’s record if present in the dataset. For example,
-Narayanan and Shmatikov [2008] showed that, from the profiles of 50 IMDB users, at least
-two of them also appear in the Netflix dataset.</p>
+<section id="netflix-challenge">
+<h3><span class="section-number">1.1.3. </span>Netflix challenge<a class="headerlink" href="#netflix-challenge" title="Link to this heading">#</a></h3>
+<p>In 2009, Netflix released the movie rating dataset containing ratings from 500,000 users
+as part of a one-million dollar challenge for developing effective data mining algorithms for predicting users’ movie preferences based on their viewing history and ratings. The data was anonymized in order to protect users’ privacy, Narayanan and Shmatikov showed that an adversary can identify the subscriber’s record if they have prior knowledge on the users movie viewing experience. For example, Narayanan and Shmatikov showed that, from the profiles of 50 IMDB users, at least two of them also appear in the Netflix dataset.</p>
 </section>
 <section id="genome-data-leak">
 <h3><span class="section-number">1.1.4. </span>Genome data leak<a class="headerlink" href="#genome-data-leak" title="Link to this heading">#</a></h3>
 <p>Another privacy incident targeted the Genome-Wide Association Studies (GWAS). These
-studies normally compare the DNA sequences of two groups of participants: people with the
-disease (cases) and similar people without (controls). Each person’s DNA mutations (singlenucleotide
+studies normally compare the DNA sequences of people who has a particular disease with similar people without that disease. Each person’s DNA mutations (singlenucleotide
 polymorphisms, or SNPs) at indicative locations are read, and this information is then
 analyzed. Traditionally, researchers publish aggregate frequencies of SNPs for participants in the
-two groups. In 2008, Homer et al. [2008] proposed attacks that could tell with high confidence
-whether an individual is in the case group, assuming that the individual’s DNA is known. e
+two groups. In 2008, Homer et al. proposed attacks that could tell with high confidence
+whether an individual has the disease, assuming that the individual’s DNA is known. The
 attack works even if the group includes hundreds of individuals. Because of the privacy concerns
 from such attacks, a number of institutions, including the U.S. National Institute of Health
 (NIH) and the Wellcome Trust in London all decided to restrict access to data from GWAS.
 Such attacks need access to the victim’s DNA data and publicly available genomic database to
-establish the likely SNP frequencies in the general population.
-Another example of the failure of naive “data anonymization” is location-based social
-networks that provide friend discovery feature by location proximity, documented by Li et al.
-[2014b]. These social networks try to provide some privacy protection by using a number of
+establish the likely SNP frequencies in the general population.</p>
+</section>
+<section id="find-your-friends">
+<h3><span class="section-number">1.1.5. </span>Find your friends<a class="headerlink" href="#find-your-friends" title="Link to this heading">#</a></h3>
+<p>Another example of the failure of naive “data anonymization” is location-based social
+networks that provide friend discovery feature by location proximity, documented by Li et al. These social networks try to provide some privacy protection by using a number of
 location-obfuscating techniques. One technique is to show to a user only relative distances of
 other users to her, instead of their location coordinates. Another is to set a limit on the precision
 of the reported information. For example, Skout defines localization accuracy to 1 mile, i.e., users
 will be located with an accuracy no better than 1 mile. Similarly, Wechat and Momo set 100 m and 10 m as their localization accuracy limits. Yet another technique is to restrict a user’s view
-to within a certain distance of the user, or to no more than a certain number of users. Li et al.
-[2014b] demonstrated the effectiveness of attacks that use lots of fake locations to issue many
+to within a certain distance of the user, or to no more than a certain number of users. Li et al. demonstrated the effectiveness of attacks that use lots of fake locations to issue many
 queries and then aggregate this information to infer the exact locations of users.</p>
 <hr class="docutils" />
 <p><strong>References</strong></p>
@@ -496,10 +480,6 @@ queries and then aggregate this information to infer the exact locations of user
 <div class="citation" id="id943" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>MKGV07<span class="fn-bracket">]</span></span>
 <p>Ashwin Machanavajjhala, Daniel Kifer, Johannes Gehrke, and Muthuramakrishnan Venkitasubramaniam. \emph L -diversity: Privacy beyond \emph k -anonymity. <em>ACM Transactions on Knowledge Discovery from Data</em>, 1(1):3, March 2007. <a class="reference external" href="https://doi.org/10.1145/1217299.1217302">doi:10.1145/1217299.1217302</a>.</p>
-</div>
-<div class="citation" id="id1048" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>MT07<span class="fn-bracket">]</span></span>
-<p>Frank McSherry and Kunal Talwar. Mechanism Design via Differential Privacy. In <em>48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07)</em>, 94–103. October 2007. <a class="reference external" href="https://doi.org/10.1109/FOCS.2007.66">doi:10.1109/FOCS.2007.66</a>.</p>
 </div>
 <div class="citation" id="id1047" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>NA21<span class="fn-bracket">]</span></span>
@@ -582,8 +562,9 @@ queries and then aggregate this information to infer the exact locations of user
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-examples">1.1. Motivating examples</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medical-data-linking-taken-from-sweeneykanon-2002">1.1.1. Medical data linking (Taken from <span class="xref cite">sweeneyKanon-2002</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-search-log">1.1.2. Web search log</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netflix">1.1.3. Netflix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netflix-challenge">1.1.3. Netflix challenge</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#genome-data-leak">1.1.4. Genome data leak</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-your-friends">1.1.5. Find your friends</a></li>
 </ul>
 </li>
 </ul>
