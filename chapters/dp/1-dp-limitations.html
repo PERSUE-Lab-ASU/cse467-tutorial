@@ -396,7 +396,7 @@ document.write(`
 <h2>Unit of privacy<a class="headerlink" href="#unit-of-privacy" title="Link to this heading">#</a></h2>
 <p>Differential privacy defines neighboring datasets as any two datasets that differ in “one person’s data.”</p>
 <p>The <em>unit of privacy</em> refers to the “neighboring” datasets concept: two datasets that differ in “one person’s data.” And the DP mechanism guarantees that one can distinguish between those datasets by looking at some query result; That means, the unit of privacy is “one person”, i.e., the mechanism protects privacy of one person. But in practical implementations in many scenarios, this unit of privacy can vary. For example, Apple’s implementation of differential privacy, uses a “person-day” unit of privacy, implying that the privacy guarantee holds for the data submitted by a person on a single day.</p>
-<p>Copied from <span id="id1">[<a class="reference internal" href="0-dp-main.html#id1047">NA21</a>]</span>
+<p>Copied from <span id="id1">[<a class="reference internal" href="0-dp-main.html#id1045">NA21</a>]</span>
 As mentioned earlier, longitudinal data is hard to protect using DP due to trend (i.e., correlation across time), and may lead to failures. For example, in Apple’s case, DP does not protect trend even for individual people. If a person
 submits identical data for 365 days in a row, then differential privacy provides essentially no protection for that data.
 The “one person” unit of privacy is a good default, and usually avoids surprises. Other units of privacy are usually used
