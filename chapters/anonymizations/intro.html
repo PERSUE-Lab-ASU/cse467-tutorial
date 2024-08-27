@@ -182,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Anonymization techniques</a></li>
 <li class="toctree-l1"><a class="reference internal" href="k-anon.html">2. K-anonymity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utility.html">3. Data utility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="other-techniques.html">4. Limitations of k-anonymity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-techniques.html">4. Other anonymization techniques</a></li>
 </ul>
 
     </div>
@@ -379,7 +379,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-examples">1.1. Motivating examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medical-data-linking">1.1.1. Medical data linking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medical-data-linking-taken-from-sweeneykanon-2002">1.1.1. Medical data linking (Taken from <span class="xref cite">sweeneyKanon-2002</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-search-log">1.1.2. Web search log</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netflix">1.1.3. Netflix</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#genome-data-leak">1.1.4. Genome data leak</a></li>
@@ -400,32 +400,32 @@ document.write(`
 <h1><span class="section-number">1. </span>Anonymization techniques<a class="headerlink" href="#anonymization-techniques" title="Link to this heading">#</a></h1>
 <section id="motivating-examples">
 <h2><span class="section-number">1.1. </span>Motivating examples<a class="headerlink" href="#motivating-examples" title="Link to this heading">#</a></h2>
-<p>These examples were taken from <span id="id1">[<a class="reference internal" href="../dp/0-dp-main.html#id4" title="Rakibul Hasan, Cristobal Cheyre, Yong-Yeol Ahn, Roberto Hoyle, and Apu Kapadia. The impact of viral posts on visibility and behavior: A longitudinal study of scientists on twitter. In Proceedings of the International AAAI Conference on Web and Social Media (ICWSM '22), to Appear. June 2022.">HCA+22</a>]</span>.</p>
-<section id="medical-data-linking">
-<h3><span class="section-number">1.1.1. </span>Medical data linking<a class="headerlink" href="#medical-data-linking" title="Link to this heading">#</a></h3>
-<p>This example was copied from <span id="id2">[]</span>.
-The National Association of Health Data Organizations (NAHDO) reported
+<p>These examples were taken from various other sources (<span id="id1">[<a class="reference internal" href="../dp/0-dp-main.html#id1046" title="Ninghui Li, Min Lyu, Dong Su, and Weining Yang. Differential Privacy: From Theory to Practice. Springer, 2017.">LLSY17</a>]</span>).</p>
+<section id="medical-data-linking-taken-from-sweeneykanon-2002">
+<h3><span class="section-number">1.1.1. </span>Medical data linking (Taken from <span id="id2">[]</span>)<a class="headerlink" href="#medical-data-linking-taken-from-sweeneykanon-2002" title="Link to this heading">#</a></h3>
+<p>The National Association of Health Data Organizations (NAHDO) reported
 that 37 states in the USA have legislative mandates to collect hospital level
 data and that 17 states have started collecting ambulatory care data from
 hospitals, physicians offices, clinics, and so on. The leftmost circle in
-Figure 1 contains a subset of the fields of information, or attributes, that
+the figure below contains a subset of the fields of information, or attributes, that
 NAHDO recommends these states collect; these attributes include the
-patient’s ZIP code, birth date, gender, and ethnicity.
-In Massachusetts, the Group Insurance Commission (GIC) is responsible
+patient’s ZIP code, birth date, gender, and ethnicity.</p>
+<p>In Massachusetts, the Group Insurance Commission (GIC) is responsible
 for purchasing health insurance for state employees. GIC collected patientspecific
 data with nearly one hundred attributes per encounter along the lines
 of the those shown in the leftmost circle of Figure 1 for approximately
 135,000 state employees and their families. Because the data were believed to
 be anonymous, GIC gave a copy of the data to researchers and sold a copy to
-industry.
-For twenty dollars I purchased the voter registration list for Cambridge
+industry. For twenty dollars I purchased the voter registration list for Cambridge
 Massachusetts and received the information on two diskettes. The
 rightmost circle in Figure 1 shows that these data included the name, address,
 ZIP code, birth date, and gender of each voter. This information can be linked
 using ZIP code, birth date and gender to the medical information, thereby linking diagnosis, procedures, and medications to particularly named individuals.</p>
-<figure>
-  <img src="../../figs/linking-attack.png" alt="Image description">
-  <figcaption>Linking to re-identify data (from Latanya Sweeney, 2002).</figcaption>
+<figure class="align-default" id="id1180">
+<a class="reference internal image-reference" href="../../_images/hospital-voter.png"><img alt="../../_images/hospital-voter.png" src="../../_images/hospital-voter.png" style="height: 400px;" /></a>
+<figcaption>
+<p><span class="caption-text">Linking to re-identify data (from Latanya Sweeney, 2002).</span><a class="headerlink" href="#id1180" title="Link to this image">#</a></p>
+</figcaption>
 </figure>
 <p>For example, William Weld was governor of Massachusetts at that time
 and his medical records were in the GIC data. Governor Weld lived in
@@ -485,12 +485,12 @@ queries and then aggregate this information to infer the exact locations of user
 <p><strong>References</strong></p>
 <div class="docutils container" id="id3">
 <div role="list" class="citation-list">
-<div class="citation" id="id4" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">HCA+22</a><span class="fn-bracket">]</span></span>
-<p>Rakibul Hasan, Cristobal Cheyre, Yong-Yeol Ahn, Roberto Hoyle, and Apu Kapadia. The impact of viral posts on visibility and behavior: A longitudinal study of scientists on twitter. In <em>Proceedings of the International AAAI Conference on Web and Social Media (ICWSM '22), to Appear</em>. June 2022.</p>
+<div class="citation" id="id944" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>LLV07<span class="fn-bracket">]</span></span>
+<p>Ninghui Li, Tiancheng Li, and Suresh Venkatasubramanian. T-Closeness: Privacy Beyond k-Anonymity and l-Diversity. In <em>2007 IEEE 23rd International Conference on Data Engineering</em>, 106–115. Istanbul, April 2007. IEEE. <a class="reference external" href="https://doi.org/10.1109/ICDE.2007.367856">doi:10.1109/ICDE.2007.367856</a>.</p>
 </div>
 <div class="citation" id="id1046" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>LLSY17<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">LLSY17</a><span class="fn-bracket">]</span></span>
 <p>Ninghui Li, Min Lyu, Dong Su, and Weining Yang. <em>Differential Privacy: From Theory to Practice</em>. Springer, 2017.</p>
 </div>
 <div class="citation" id="id943" role="doc-biblioentry">
@@ -580,7 +580,7 @@ queries and then aggregate this information to infer the exact locations of user
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-examples">1.1. Motivating examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medical-data-linking">1.1.1. Medical data linking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medical-data-linking-taken-from-sweeneykanon-2002">1.1.1. Medical data linking (Taken from <span class="xref cite">sweeneyKanon-2002</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-search-log">1.1.2. Web search log</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netflix">1.1.3. Netflix</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#genome-data-leak">1.1.4. Genome data leak</a></li>

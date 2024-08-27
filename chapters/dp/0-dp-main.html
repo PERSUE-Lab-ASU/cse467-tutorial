@@ -184,7 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../anonymizations/intro.html">1. Anonymization techniques</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../anonymizations/k-anon.html">2. K-anonymity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../anonymizations/utility.html">3. Data utility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../anonymizations/other-techniques.html">4. Limitations of k-anonymity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anonymizations/other-techniques.html">4. Other anonymization techniques</a></li>
 </ul>
 
     </div>
@@ -578,7 +578,7 @@ document.write(`
 <section id="neighboring-datasets">
 <h3>Neighboring datasets<a class="headerlink" href="#neighboring-datasets" title="Link to this heading">#</a></h3>
 <p>Two datasets <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span> are neighbors if they differ in at most one record (i.e., one row). Thus, either <span class="math notranslate nohighlight">\(D_1\)</span> has at most one more (or less) row than <span class="math notranslate nohighlight">\(D_2\)</span>, or at most one row in <span class="math notranslate nohighlight">\(D_1\)</span> has values that are different than <span class="math notranslate nohighlight">\(D_2\)</span>. We write <span class="math notranslate nohighlight">\(|D_1 - D_2|\leq 1\)</span></p>
-<a class="reference internal image-reference" href="../../_images/neighbor-datasets.png" id="neighbor-datasets"><img alt="../../_images/neighbor-datasets.png" id="neighbor-datasets" src="../../_images/neighbor-datasets.png" style="height: 150px;" /></a>
+<a class="reference internal image-reference" href="chapters/dp/figs/neighbor-datasets.png" id="neighbor-datasets"><img alt="chapters/dp/figs/neighbor-datasets.png" id="neighbor-datasets" src="chapters/dp/figs/neighbor-datasets.png" style="height: 150px;" /></a>
 <p>For example, in <a class="reference internal" href="#neighbor-datasets"><span class="std std-ref">figure</span></a>, <span class="math notranslate nohighlight">\(D_2\)</span> can be obtained by deleting one row from <span class="math notranslate nohighlight">\(D_1\)</span> (or <span class="math notranslate nohighlight">\(D_1\)</span> can be obtained by adding one row to <span class="math notranslate nohighlight">\(D_2\)</span>) and thus they are neighbors. <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_3\)</span> has the same number of rows, but the values in (exactly) one row is different, thus they are also neighbors. Note that, you can obtain <span class="math notranslate nohighlight">\(D_3\)</span> by first deleting the last row from <span class="math notranslate nohighlight">\(D_1\)</span> and then adding one row in the resulting dataset; thus, this replacement operation can be thought of as a combination of a deletion and an addition operations (i.e., two operations in total).</p>
 </section>
 </section>
@@ -637,11 +637,11 @@ Thus we can achieve differential privacy for our example query by using the Lapl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17422
-17450
-17444
-17454
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17456
+17473
+17455
 17446
+17439
 </pre></div>
 </div>
 </div>
@@ -659,8 +659,8 @@ Thus we can achieve differential privacy for our example query by using the Lapl
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17449
 17450
-17449
-17449
+17450
+17450
 17449
 </pre></div>
 </div>
@@ -675,9 +675,9 @@ Thus we can achieve differential privacy for our example query by using the Lapl
 <p><span id="id2">[<a class="reference internal" href="#id1048" title="Frank McSherry and Kunal Talwar. Mechanism Design via Differential Privacy. In 48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07), 94–103. October 2007. doi:10.1109/FOCS.2007.66.">MT07</a>]</span></p>
 <div class="docutils container" id="id3">
 <div role="list" class="citation-list">
-<div class="citation" id="id4" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>HCA+22<span class="fn-bracket">]</span></span>
-<p>Rakibul Hasan, Cristobal Cheyre, Yong-Yeol Ahn, Roberto Hoyle, and Apu Kapadia. The impact of viral posts on visibility and behavior: A longitudinal study of scientists on twitter. In <em>Proceedings of the International AAAI Conference on Web and Social Media (ICWSM '22), to Appear</em>. June 2022.</p>
+<div class="citation" id="id944" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>LLV07<span class="fn-bracket">]</span></span>
+<p>Ninghui Li, Tiancheng Li, and Suresh Venkatasubramanian. T-Closeness: Privacy Beyond k-Anonymity and l-Diversity. In <em>2007 IEEE 23rd International Conference on Data Engineering</em>, 106–115. Istanbul, April 2007. IEEE. <a class="reference external" href="https://doi.org/10.1109/ICDE.2007.367856">doi:10.1109/ICDE.2007.367856</a>.</p>
 </div>
 <div class="citation" id="id1046" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>LLSY17<span class="fn-bracket">]</span></span>
