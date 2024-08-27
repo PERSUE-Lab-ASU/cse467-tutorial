@@ -637,11 +637,11 @@ Thus we can achieve differential privacy for our example query by using the Lapl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17456
-17473
-17455
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17441
+17450
+17456
 17446
-17439
+17449
 </pre></div>
 </div>
 </div>
@@ -657,11 +657,11 @@ Thus we can achieve differential privacy for our example query by using the Lapl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17449
-17450
-17450
-17450
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17450
 17449
+17449
+17450
+17450
 </pre></div>
 </div>
 </div>
@@ -671,32 +671,25 @@ Thus we can achieve differential privacy for our example query by using the Lapl
 <p>For <span class="math notranslate nohighlight">\(D_2\)</span>, the Laplace noise will be <span class="math notranslate nohighlight">\(L(\frac{\Delta}{\epsilon}) = \frac{\epsilon}{2\Delta} e^{-(\frac{\epsilon |f(D_2)|}{\Delta})}\)</span></p>
 <p>For the DP mechanism <span class="math notranslate nohighlight">\(M\)</span>, the randomization part comes from this Laplace noise sampling, all other steps in the mechanism are deterministic. Thus, the final outcome of <span class="math notranslate nohighlight">\(M\)</span>, which is random or probabilistic, will follow the same distribution as the Laplace function. Tat means</p>
 <p><span class="math notranslate nohighlight">\(\frac{P(M(D_1))\in S}{P(M(D_2))\in S} =  \frac{e^{-(\frac{\epsilon|f(D_1)|} {\Delta})}}{e^{-(\frac{\epsilon|f(D_2)|} {\Delta})}} = e^{-\frac{\epsilon (|f(D_2)| - |f(D_1|)} {\Delta}} \leq e^{\epsilon}\)</span></p>
-<p>citing <span id="id1">[<a class="reference internal" href="#id1048" title="Frank McSherry and Kunal Talwar. Mechanism Design via Differential Privacy. In 48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07), 94–103. October 2007. doi:10.1109/FOCS.2007.66.">MT07</a>]</span></p>
-<p><span id="id2">[<a class="reference internal" href="#id1048" title="Frank McSherry and Kunal Talwar. Mechanism Design via Differential Privacy. In 48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07), 94–103. October 2007. doi:10.1109/FOCS.2007.66.">MT07</a>]</span></p>
-<div class="docutils container" id="id3">
+<div class="docutils container" id="id1">
 <div role="list" class="citation-list">
-<div class="citation" id="id944" role="doc-biblioentry">
+<div class="citation" id="id942" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>LLV07<span class="fn-bracket">]</span></span>
 <p>Ninghui Li, Tiancheng Li, and Suresh Venkatasubramanian. T-Closeness: Privacy Beyond k-Anonymity and l-Diversity. In <em>2007 IEEE 23rd International Conference on Data Engineering</em>, 106–115. Istanbul, April 2007. IEEE. <a class="reference external" href="https://doi.org/10.1109/ICDE.2007.367856">doi:10.1109/ICDE.2007.367856</a>.</p>
 </div>
-<div class="citation" id="id1046" role="doc-biblioentry">
+<div class="citation" id="id1044" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>LLSY17<span class="fn-bracket">]</span></span>
 <p>Ninghui Li, Min Lyu, Dong Su, and Weining Yang. <em>Differential Privacy: From Theory to Practice</em>. Springer, 2017.</p>
 </div>
-<div class="citation" id="id943" role="doc-biblioentry">
+<div class="citation" id="id941" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>MKGV07<span class="fn-bracket">]</span></span>
 <p>Ashwin Machanavajjhala, Daniel Kifer, Johannes Gehrke, and Muthuramakrishnan Venkitasubramaniam. \emph L -diversity: Privacy beyond \emph k -anonymity. <em>ACM Transactions on Knowledge Discovery from Data</em>, 1(1):3, March 2007. <a class="reference external" href="https://doi.org/10.1145/1217299.1217302">doi:10.1145/1217299.1217302</a>.</p>
 </div>
-<div class="citation" id="id1048" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>MT07<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
-<p>Frank McSherry and Kunal Talwar. Mechanism Design via Differential Privacy. In <em>48th Annual IEEE Symposium on Foundations of Computer Science (FOCS'07)</em>, 94–103. October 2007. <a class="reference external" href="https://doi.org/10.1109/FOCS.2007.66">doi:10.1109/FOCS.2007.66</a>.</p>
-</div>
-<div class="citation" id="id1047" role="doc-biblioentry">
+<div class="citation" id="id1045" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>NA21<span class="fn-bracket">]</span></span>
 <p><strong>missing publisher in programmingDP2021</strong></p>
 </div>
-<div class="citation" id="id916" role="doc-biblioentry">
+<div class="citation" id="id914" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>SS98<span class="fn-bracket">]</span></span>
 <p><strong>missing journal in samarati1998protecting</strong></p>
 </div>
