@@ -65,6 +65,8 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/preliminaries';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -355,7 +357,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -371,6 +375,24 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-basics">Probability basics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variable">Random variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value">Expected value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-and-standard-deviation">Variance and Standard Deviation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-distribution">Probability distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables-and-probability-distributions">Random variables and probability distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-distribution">Gaussian distribution</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -382,7 +404,110 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="preliminaries">
 <h1>Preliminaries<a class="headerlink" href="#preliminaries" title="Link to this heading">#</a></h1>
-<p>Monotonically increasing function.</p>
+<section id="probability-basics">
+<h2>Probability basics<a class="headerlink" href="#probability-basics" title="Link to this heading">#</a></h2>
+<p>Probability is one of <strong>THE most important</strong> knowledge branch that comes up pretty much any domain you want to study. This is because things in the real world is uncertain, and probability is the toolkit to express and study uncertainty!</p>
+<p>Unfortunately, probability is also one of the most challenging topic to grasp (at least I get pretty easily confused). But let’s try our best. Let’s start with the definition of probability for an outcome, when all outcomes are equaly likely.</p>
+<p>The probability of an event <span class="math notranslate nohighlight">\(E\)</span>, <span class="math notranslate nohighlight">\(P(E) = \frac{\text{number of outcomes in E}}{\text{number of total possible outcomes}}\)</span></p>
+<p>For example, for rolling a dice, the probabiltiy of getting a <span class="math notranslate nohighlight">\(4\)</span> is <span class="math notranslate nohighlight">\(P(E=\text{(outcome = 4)})=\frac{1}{6}\)</span>, because there are six possible outcomes in the sample space, <span class="math notranslate nohighlight">\(S=\{1,2,3,4,5,6\}\)</span> and <span class="math notranslate nohighlight">\(4\)</span> is one of them.</p>
+<p>An event can incorporate more than one outcomes, e.g., <span class="math notranslate nohighlight">\(P(E=\text{outcome is an odd number}) = \frac{|\{1,3,5\}|}{|\{1,2,3,4,5,6\}|} = \frac{1}{2}\)</span></p>
+<p>When the outcomes are not equally likely, probability of an event can be thought of as the <em>relative</em> frequency of it happening over <ins> multiple or repeated trial</ins>. According to this definition, the probability of obtaining a <span class="math notranslate nohighlight">\(4\)</span> from a dice rolls being <span class="math notranslate nohighlight">\(1/6\)</span> means that, roughly, one out of six times you will get a <span class="math notranslate nohighlight">\(4\)</span> if you repeatedly roll a dice (for infinite times). Each of these individual rolls are called a “Trial.”</p>
+<p>But what if the events are not repeatable? For example, what does it mean to say that “the probability of me getting an scholarship this year is <span class="math notranslate nohighlight">\(1/4\)</span> or <span class="math notranslate nohighlight">\(25%\)</span>?” There is only one “this year” (i.e., non repeatable) and the outcomes are not equally probable. In such cases, probablity means the degree of believing that an event will happen.</p>
+<section id="random-variable">
+<h3>Random variable<a class="headerlink" href="#random-variable" title="Link to this heading">#</a></h3>
+<p>A Random variable is a function that maps a set of events to a set of real numbers. In other words, a random variable assigns a number to each of the events. The events themselves can be numeric (like rolling a dice yields a numeric outcome) and the mapped values can be the same (i.e., an identity function).</p>
+<p>For example, we can define a random variable <span class="math notranslate nohighlight">\(X\)</span> which denotes the values of a dice throw. That means <span class="math notranslate nohighlight">\(X\)</span> can take any value from <span class="math notranslate nohighlight">\(\{1,2,3,4,5,6\}\)</span>. In this case, the probability of getting a <span class="math notranslate nohighlight">\(4\)</span> can be expressed as <span class="math notranslate nohighlight">\(P(X=4)\)</span>.</p>
+<p>Random variables can map non-numeric values to numbers. For example, a coin toss yields a head or tail, <span class="math notranslate nohighlight">\(S=\{H, T\}\)</span>. We can define a random variable over this set that takes <span class="math notranslate nohighlight">\(1\)</span> if head or <span class="math notranslate nohighlight">\(0\)</span> if tail is yielded. Then, <span class="math notranslate nohighlight">\(P(X=1) = P(X=0)= 0.5\)</span>.</p>
+<p>Why do not we call a random variable a function, when it is in fact a function? I do not know. Probably because of historical reasons.</p>
+<p>Okay, but why do we need random variables in the first place? Because it allows us to assign arbitrary numerical functions to the set of outcomes (or events), and compute the probability of arbitrary numerical values. For example, if we represent dice roll with <span class="math notranslate nohighlight">\(X\)</span>, we can ask what is the probability that <span class="math notranslate nohighlight">\(X&lt;5\)</span>, which will translate to the probability of having an outcome between <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(4\)</span>. Another example is, say we roll two dice where <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> represent the outcomes, we can ask what is the probability of having a total of 8, i.e., <span class="math notranslate nohighlight">\(P(X+Y=8)\)</span>?</p>
+</section>
+<section id="expected-value">
+<h3>Expected value<a class="headerlink" href="#expected-value" title="Link to this heading">#</a></h3>
+<p>Since random variables can take (different) numerical values, the concept of what value it takes <em>on average</em> is interesting (and important). The expected value is the arithmetic mean of the possible values a random variable can take, weighted by the probability of those outcomes. In other words, if we repeatedly allow the variable to take values according to the probability of different events, the <code class="docutils literal notranslate"><span class="pre">expected</span> <span class="pre">value</span></code> indicates what can we <em>expect to get</em> on average.</p>
+<p>For example, let’s say you play a game where you roll a dice and get a gift money based on what the dice yields. Assume that for <span class="math notranslate nohighlight">\(\{1,2,3,4,5,6\}\)</span>, you get gift of <span class="math notranslate nohighlight">\(\{100, 120, 140, 150, 180, 200\}\)</span> USD. That is the random variable (which is really a function) maps <span class="math notranslate nohighlight">\(\{1,2,3,4,5,6\}\)</span> to <span class="math notranslate nohighlight">\(\{100, 120, 140, 150, 180, 200\}\)</span>. How much can you <em>expect to get</em> if you play the game once? This is the mean or expected value.</p>
+<p><span class="math notranslate nohighlight">\(E(G) = \frac{1}{6} (100+ 120+ 140 + 150+ 180+ 200) \approx 148\)</span></p>
+<p>The general equation of expected value of a random variable <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(E(X) = \sum_i X_i P(X=X_i) = \sum_i x P(X=x)\)</span>.</p>
+</section>
+<section id="variance-and-standard-deviation">
+<h3>Variance and Standard Deviation<a class="headerlink" href="#variance-and-standard-deviation" title="Link to this heading">#</a></h3>
+<p>Variance of a random variable <span class="math notranslate nohighlight">\(X\)</span> is the same concept as variance of any variable (random or not). Intuitively, it says how different the values that <span class="math notranslate nohighlight">\(X\)</span> can take from each other. The more the values <em>vary</em> from each other the higher the variance (duh).
+It is measured as the average of squired distances of the values from their mean (confusing, right?). Mathmatically,</p>
+<p><span class="math notranslate nohighlight">\(Var(X) = E[(X-E[X])^2]\)</span></p>
+<p>Intuitively, it says that, how different the values are from their mean (which implicitly measures how different the values are from each other.</p>
+<p>For example, if a random variable is associated with a dice roll but always takes <span class="math notranslate nohighlight">\(1\)</span> regardless of what the dice shows, then the expected value is also <span class="math notranslate nohighlight">\(1\)</span>, and the variance is <span class="math notranslate nohighlight">\(0\)</span> since there is no variation. See below that, since the values of <span class="math notranslate nohighlight">\(Y\)</span> are farther apart from each other compared to <span class="math notranslate nohighlight">\(X\)</span>, the variance of <span class="math notranslate nohighlight">\(Y\)</span> is larger than the variance of <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x:</span><span class="si">{}</span><span class="s1">, variance:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<span class="n">y</span><span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y:</span><span class="si">{}</span><span class="s1">, variance:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], variance:8.25
+y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], variance:825.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The most important takeaway about variance is that it indicates how different of a value from the expected value you can expect to get.</p>
+</div>
+<p>The standard deviation is the squared root of variance: <span class="math notranslate nohighlight">\(SD(X) = \sqrt{var(X)}\)</span></p>
+</section>
+</section>
+<section id="probability-distribution">
+<h2>Probability distribution<a class="headerlink" href="#probability-distribution" title="Link to this heading">#</a></h2>
+<p><strong>Definition:</strong> For <span class="math notranslate nohighlight">\(n\)</span> mutually exclusive (i.e., cannot occur together) events <span class="math notranslate nohighlight">\((E_1, E_2,\dots ,E_n)\)</span>, if the following conditions hold:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(0 \leq P(E_i) \leq 1, \forall i=1,\dots, n\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum_1^n P(E_i)= 1\)</span></p></li>
+</ol>
+<p>then, the set <span class="math notranslate nohighlight">\(\{P(E_1), P(E_2), \dots, P(E_n)\}\)</span> is the probability distribution of the event set. I.e., the distribution shows <em>how the total probabiliy of 1 is distributed across the mutually exclusive events</em>.</p>
+<p>We can think of a probability distribution as a function, that maps the possible events to their probabilities. For example, for a fair coin toss, it maps <span class="math notranslate nohighlight">\(\{H, T\}\)</span> to <span class="math notranslate nohighlight">\(\{.5,.5\}\)</span>.</p>
+<p>Like any other function, a probability distribution function, denoted as <span class="math notranslate nohighlight">\(p(X)\)</span> of random varible <span class="math notranslate nohighlight">\(X\)</span> can be plotted.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mf">.5</span><span class="p">,</span><span class="mf">.5</span><span class="p">],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;probility distribution function of a coin toss.&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="c1"># plt.show()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">)),</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">]</span><span class="o">*</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;probility distribution function of a dice roll.&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9f5afc090a4c3af87afe3a68a38e5ba9695788bb2e1da93d3ee1b139bddf28a6.png" src="../_images/9f5afc090a4c3af87afe3a68a38e5ba9695788bb2e1da93d3ee1b139bddf28a6.png" />
+</div>
+</div>
+<p>The functions are parallel to the horizontal axis, because the they are uniform functions (each value has the same probability). We can also have a vertical line (a point function) if only one value has probablity of 1, all else 0 (imagine a coin with both sides head!). These two are extreme examples. Most probability distributions are somewhere in the middle.</p>
+<section id="random-variables-and-probability-distributions">
+<h3>Random variables and probability distributions<a class="headerlink" href="#random-variables-and-probability-distributions" title="Link to this heading">#</a></h3>
+<p>Random variables and probability distributions both are functions, so how are they related? A random variable maps events to numeric values, and a probability distribution maps events to their probabilities. Since values of a random variable have the same probabilities as the associated events, these values have the same probability distribution function.</p>
+<p>For example, if the events of head and tail for a fair coin toss is mapped to 1 and 0, then they have the same probability distribution of <span class="math notranslate nohighlight">\(\{.5,.5\}\)</span>.</p>
+<p>Sampling from a distribution function means that taking values for a random variable according to the distribution function. This idea goes back to the frequncy: if we repeatedly take values from a probability distribution function, the relative frequency will follow the shape of that function. The more we sample, the more closely they will follow that function. Let’s see this idea with some popular probability functions.</p>
+</section>
+<section id="gaussian-distribution">
+<h3>Gaussian distribution<a class="headerlink" href="#gaussian-distribution" title="Link to this heading">#</a></h3>
+<p>The Gaussian, or Normal distribution function has the following equation:</p>
+<p>&lt;&lt;engine=’python’&gt;&gt;
+print(‘Hi’)
+&#64;</p>
+<hr class="docutils" />
+<p><strong>External resources</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://homepages.inf.ed.ac.uk/sgwater/teaching/general/probability.pdf">https://homepages.inf.ed.ac.uk/sgwater/teaching/general/probability.pdf</a></p></li>
+<li><p><a class="reference external" href="https://bookdown.org/kevin_davisross/probsim-book/prob-literacy.html">https://bookdown.org/kevin_davisross/probsim-book/prob-literacy.html</a></p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -422,7 +547,30 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-basics">Probability basics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variable">Random variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value">Expected value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-and-standard-deviation">Variance and Standard Deviation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-distribution">Probability distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables-and-probability-distributions">Random variables and probability distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-distribution">Gaussian distribution</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

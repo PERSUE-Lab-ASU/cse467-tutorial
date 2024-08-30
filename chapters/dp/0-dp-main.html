@@ -409,17 +409,28 @@ document.write(`
 <h1>Differential Privacy<a class="headerlink" href="#differential-privacy" title="Link to this heading">#</a></h1>
 <section id="attack-model">
 <h2>Attack model<a class="headerlink" href="#attack-model" title="Link to this heading">#</a></h2>
-<p>Explain when DP is necessary.</p>
-<p>Point out that DP only protects membership status.</p>
+<p>We have studied privacy attacks where attackers learn sensitive information about an individual by linking two (or more) published data sources. What if the datasets are not published? For example, imagine a situation where a hospital dataset is created, as shown below, where anyone can query it to learn aggregated statistics (e.g., “how many people suffer from obesity?”) but the actual dataset is never released.</p>
+<figure class="align-default" id="medical-record">
+<a class="reference internal image-reference" href="../../_images/medical-record.png"><img alt="../../_images/medical-record.png" src="../../_images/medical-record.png" style="height: 400px;" /></a>
+</figure>
+<p>You know that your neighbor Igor goes to the same hospita. You know Igor’s Nationality (and obviously, Zip and gender!) and know or guess age. Can you learn, by quering the dataset, and not by directly accessing it, what medical problem Igor is suffering from?</p>
+<p>The answer is, unfortunately, <strong>Yes</strong>, which is why we have this chapter. By progressively adding new conditions to your query, you can determine what Igor is suffering from. For example, you can query: <em>how many people, who are</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;remove-input&quot;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">adult</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../datasets/adult_with_pii.csv&#39;</span><span class="p">)</span><span class="c1">#[[&quot;age&quot;, &quot;education&quot;, &quot;marital status&quot;, &quot;occupation&quot;,</span>
                                                           <span class="c1">#&quot;relationship&quot;,&quot;native-country&quot;,  &quot;workclass&quot;, &quot;fnlwgt&quot;, &quot;education-num&quot;, &quot;capital-gain&quot;, &quot;capital-loss&quot;, &quot;hours-per-week&quot;,</span>
                                                 <span class="c1">#           &quot;race&quot;, &quot;gender&quot;,  &quot;salary&quot;]]</span>
-<span class="c1">#colums=[&#39;workclass&#39;, &#39;fnlwgt&#39;,  &#39;education&#39;,  &#39;education-num      marital-status         occupation   relationship   race   sex  capital-gain  capital-loss  hours-per-week native-country income</span>
-<span class="n">adult</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;SSN&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="s1">&#39;Education&#39;</span><span class="p">,</span> <span class="s1">&#39;Marital Status&#39;</span><span class="p">,</span> <span class="s1">&#39;Occupation&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Sex&#39;</span><span class="p">]</span>
+<span class="n">adult</span><span class="o">.</span><span class="n">head</span><span class="p">()[</span><span class="n">columns</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -446,20 +457,10 @@ document.write(`
       <th>DOB</th>
       <th>SSN</th>
       <th>Zip</th>
-      <th>Workclass</th>
       <th>Education</th>
-      <th>Education-Num</th>
       <th>Marital Status</th>
       <th>Occupation</th>
-      <th>Relationship</th>
-      <th>Race</th>
       <th>Sex</th>
-      <th>Hours per week</th>
-      <th>Country</th>
-      <th>Target</th>
-      <th>Age</th>
-      <th>Capital Gain</th>
-      <th>Capital Loss</th>
     </tr>
   </thead>
   <tbody>
@@ -469,20 +470,10 @@ document.write(`
       <td>9/7/1967</td>
       <td>732-14-6110</td>
       <td>64152</td>
-      <td>State-gov</td>
       <td>Bachelors</td>
-      <td>13</td>
       <td>Never-married</td>
       <td>Adm-clerical</td>
-      <td>Not-in-family</td>
-      <td>White</td>
       <td>Male</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-      <td>56</td>
-      <td>2174</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>1</th>
@@ -490,20 +481,10 @@ document.write(`
       <td>6/7/1988</td>
       <td>150-19-2766</td>
       <td>61523</td>
-      <td>Self-emp-not-inc</td>
       <td>Bachelors</td>
-      <td>13</td>
       <td>Married-civ-spouse</td>
       <td>Exec-managerial</td>
-      <td>Husband</td>
-      <td>White</td>
       <td>Male</td>
-      <td>13</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-      <td>35</td>
-      <td>0</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -511,20 +492,10 @@ document.write(`
       <td>8/6/1991</td>
       <td>725-59-9860</td>
       <td>95668</td>
-      <td>Private</td>
       <td>HS-grad</td>
-      <td>9</td>
       <td>Divorced</td>
       <td>Handlers-cleaners</td>
-      <td>Not-in-family</td>
-      <td>White</td>
       <td>Male</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-      <td>32</td>
-      <td>0</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -532,20 +503,10 @@ document.write(`
       <td>4/6/2009</td>
       <td>659-57-4974</td>
       <td>25503</td>
-      <td>Private</td>
       <td>11th</td>
-      <td>7</td>
       <td>Married-civ-spouse</td>
       <td>Handlers-cleaners</td>
-      <td>Husband</td>
-      <td>Black</td>
       <td>Male</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-      <td>14</td>
-      <td>0</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>4</th>
@@ -553,20 +514,10 @@ document.write(`
       <td>9/16/1951</td>
       <td>220-93-3811</td>
       <td>75387</td>
-      <td>Private</td>
       <td>Bachelors</td>
-      <td>13</td>
       <td>Married-civ-spouse</td>
       <td>Prof-specialty</td>
-      <td>Wife</td>
-      <td>Black</td>
       <td>Female</td>
-      <td>40</td>
-      <td>Cuba</td>
-      <td>&lt;=50K</td>
-      <td>72</td>
-      <td>0</td>
-      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -637,10 +588,10 @@ Thus we can achieve differential privacy for our example query by using the Lapl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17435
-17433
-17452
-17442
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17445
+17491
+17473
+17451
 17453
 </pre></div>
 </div>
@@ -657,11 +608,11 @@ Thus we can achieve differential privacy for our example query by using the Lapl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17449
-17449
-17449
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17450
 17450
 17449
+17450
+17450
 </pre></div>
 </div>
 </div>
