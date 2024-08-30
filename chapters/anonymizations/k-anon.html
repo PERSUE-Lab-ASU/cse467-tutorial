@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. K-anonymity &#8212; Data and Information Privacy</title>
+    <title>3. K-anonymity &#8212; Data and Information Privacy</title>
   
   
   
@@ -70,8 +70,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/anonymizations/k-anon';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3. Data utility" href="utility.html" />
-    <link rel="prev" title="1. Anonymization techniques" href="intro.html" />
+    <link rel="next" title="4. Data utility" href="utility.html" />
+    <link rel="prev" title="2. Anonymization techniques" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,10 +181,11 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">1. Anonymization techniques</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. K-anonymity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utility.html">3. Data utility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="other-techniques.html">4. Other anonymization techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preli/probability.html">1. Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">2. Anonymization techniques</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. K-anonymity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utility.html">4. Data utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-techniques.html">5. Other anonymization techniques</a></li>
 </ul>
 
     </div>
@@ -380,19 +381,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linking-attack">2.1. Linking attack</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">2.1.1. Definitions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#achieving-k-anonymity">2.1.2. Achieving k-anonymity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-generalization">2.1.3. Domain generalization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-tuple-generalization">2.1.4. Domain tuple generalization</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-domain-generalization-to-achieve-k-anonymity">2.1.4.1. How to use domain generalization to achieve k-anonymity?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linking-attack">3.1. Linking attack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">3.1.1. Definitions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#achieving-k-anonymity">3.1.2. Achieving k-anonymity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-generalization">3.1.3. Domain generalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-tuple-generalization">3.1.4. Domain tuple generalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-domain-generalization-to-achieve-k-anonymity">3.1.4.1. How to use domain generalization to achieve k-anonymity?</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suppression">2.2. Suppression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finally-achieving-a-k-minimal-generalization">2.2.1. Finally, achieving a <span class="math notranslate nohighlight">\(k\)</span>-minimal generalization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-domain-versus-local-cell-generalization">2.2.2. Full domain versus local (cell) generalization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suppression">3.2. Suppression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finally-achieving-a-k-minimal-generalization">3.2.1. Finally, achieving a <span class="math notranslate nohighlight">\(k\)</span>-minimal generalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-domain-versus-local-cell-generalization">3.2.2. Full domain versus local (cell) generalization</a></li>
 </ul>
 </li>
 </ul>
@@ -407,7 +408,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="k-anonymity">
-<h1><span class="section-number">2. </span>K-anonymity<a class="headerlink" href="#k-anonymity" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">3. </span>K-anonymity<a class="headerlink" href="#k-anonymity" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -578,7 +579,7 @@ document.write(`
 </div></div></div>
 </div>
 <section id="linking-attack">
-<h2><span class="section-number">2.1. </span>Linking attack<a class="headerlink" href="#linking-attack" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.1. </span>Linking attack<a class="headerlink" href="#linking-attack" title="Link to this heading">#</a></h2>
 <p>Imagine that we have a public health dataset with the following attributes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -948,7 +949,7 @@ document.write(`
 <p>The columns on which we performed the merge operation, i.e., the columns that are, in combination, unique to each person, are called quasi-identifiers, since they combinedly can identify a person. Note that none of these columns can individually identify a person because they are not unique to a person. Compare that to explicit or direct identifiers, such as full name and SSN, that can individually identify a person. Likewise, you mobile phone has a uniqune ID (actually multiple) that is likely get harvested by most applications to track you cross-apps and over time.</p>
 <p>Let’s make these (and other) definitions formal.</p>
 <section id="definitions">
-<h3><span class="section-number">2.1.1. </span>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.1.1. </span>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h3>
 <p><strong><u>Attributes (Columns)</u>:</strong> Let <span class="math notranslate nohighlight">\(B(A_1,…,A_n)\)</span> be a table with a finite number of tuples (or rows). The finite set of attributes of <span class="math notranslate nohighlight">\(B\)</span> are <span class="math notranslate nohighlight">\(\{A_1,…,A_n\}\)</span> <span id="id1">[]</span>. For the <em>Health</em> table shown above, the attributes are <code class="docutils literal notranslate"><span class="pre">{Name,</span> <span class="pre">SSN,</span> <span class="pre">Maritalstatus,</span> <span class="pre">Sex,</span> <span class="pre">DOB,</span> <span class="pre">Zip,</span> <span class="pre">Ethnicity,</span> <span class="pre">Problem}</span></code>. Each attribute, also represents a domain of values, from where each of the tuples take value. For example, <em>Sex</em> may represent the domain <em>{Male, Female, non-binary, etc.}</em> and each row takes one value from this domain set. For our case, we assume that each row contains data about one person (and a person appears exactly once).</p>
 <p><strong><u>Quasi-identifiers</u>:</strong>
 Given a population of entities <span class="math notranslate nohighlight">\(U\)</span>,  an entity-specific table <span class="math notranslate nohighlight">\(T(A_1,\dots,A_n)\)</span>,   <span class="math notranslate nohighlight">\(f_c: U\rightarrow T\)</span>,   and  <span class="math notranslate nohighlight">\(f_g: T \rightarrow U'\)</span>, where <span class="math notranslate nohighlight">\(U \subseteq U'\)</span>.  A quasi-identifier of <span class="math notranslate nohighlight">\(T\)</span>, written <span class="math notranslate nohighlight">\(Q_T\)</span>, is a set of attributes <span class="math notranslate nohighlight">\({A_i,\dots,A_j} \subseteq {A_1,\dots,A_n}\)</span> where: <span class="math notranslate nohighlight">\(\exists p_i \in U\)</span> such that <span class="math notranslate nohighlight">\(f_g(f_c(p_i)[Q_T]) = p_i\)</span>.</p>
@@ -957,7 +958,7 @@ Given a population of entities <span class="math notranslate nohighlight">\(U\)<
 A sensitive attribute is an attribute whose value for any particular individual must be kept secret from people who have no direct access to the original data. In the above example, the medical condition of a person (the <code class="docutils literal notranslate"><span class="pre">Problem</span></code> attribute) can be considered sensitive.</p>
 </section>
 <section id="achieving-k-anonymity">
-<h3><span class="section-number">2.1.2. </span>Achieving k-anonymity<a class="headerlink" href="#achieving-k-anonymity" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.1.2. </span>Achieving k-anonymity<a class="headerlink" href="#achieving-k-anonymity" title="Link to this heading">#</a></h3>
 <p>To prevent linking attacks as shown below, one way is to make the datasets satisfy k-anonymity before being published. What is the condition for satisfying k-anonymity?</p>
 <p><strong>Satisfying k-anonymity:</strong> Let <span class="math notranslate nohighlight">\(T(A_1,\dots,A_n)\)</span> be a table and <span class="math notranslate nohighlight">\(QI_T\)</span> be the quasi-identifier associated with it. <span class="math notranslate nohighlight">\(T\)</span> satisfies k-anonymity iff each sequence of values in <span class="math notranslate nohighlight">\(T[QI_T]\)</span> appears with at least <span class="math notranslate nohighlight">\(k\)</span> occurrences in <span class="math notranslate nohighlight">\(T[QI_T]\)</span>. In other words, <span class="math notranslate nohighlight">\(T\)</span> must contain every combination of the values for quasi-identifiers at least <span class="math notranslate nohighlight">\(k\)</span> times. Since the quasi-identifiers now refer to <span class="math notranslate nohighlight">\(k\)</span> people, instead of a single person, no (sure) identification can be made.</p>
 <p>For example, in the example below, we have truncated zip codes and replaced DOB with birth year. It now satisfies 2-anonymity (i.e., k=2) because each combination of <code class="docutils literal notranslate"><span class="pre">{Sex,</span> <span class="pre">Zip,</span> <span class="pre">Birth</span> <span class="pre">Year}</span></code> appears at least twice. Thus, these quasi-identifiers do not uniquely identify a person anymore. Consequently, by linking this table with health dataset, no one can learn exactly what medical condition each person suffers from.</p>
@@ -1094,7 +1095,7 @@ A sensitive attribute is an attribute whose value for any particular individual 
 <p>How do we anonymize datasets this way? There are two methods: <em>Generalization</em> and <em>Suppression</em>, that we explain below.</p>
 </section>
 <section id="domain-generalization">
-<h3><span class="section-number">2.1.3. </span>Domain generalization<a class="headerlink" href="#domain-generalization" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.1.3. </span>Domain generalization<a class="headerlink" href="#domain-generalization" title="Link to this heading">#</a></h3>
 <p>Recall that, each attribute or column in a dataset represents a domain (i.e., set of appropriate values). For example, Zipcode can be the set of all US zip codes as the Domain. Records in a  dataset contain specific values from those domain, like 2139 in the voter datset. This domain of these specific values can be labeled as a ground domain, <span class="math notranslate nohighlight">\(D_0\)</span>. To achieve k-anonymity, we will replace these specific values with more generic values, coming from a more general domain. In the above example, we removed the last digit from the zip codes, and the set of these 1-less-digit zipcodes can be labeled as another domain, <span class="math notranslate nohighlight">\(D_1\)</span>. Continuing this generalization step one more time, we can use values from domain <span class="math notranslate nohighlight">\(D_2\)</span> where two digits have been removed. Thus, these domains have a ordered mapping: <span class="math notranslate nohighlight">\(D_0\rightarrow D_1\rightarrow D_2\rightarrow \dots\rightarrow D_n\)</span> which must satisfy two conditions:</p>
 <ol class="arabic simple">
 <li><p>Each domain <span class="math notranslate nohighlight">\(D_i\)</span> has at most one direct generalized domain. Mathematically, <span class="math notranslate nohighlight">\(\forall D_i, D_j , D_z \in D : D_i \leq_D Dj , D_i \leq_D D_z \implies D_j \leq_D D_z \vee D_z \leq_D D_j\)</span></p></li>
@@ -1104,25 +1105,25 @@ A sensitive attribute is an attribute whose value for any particular individual 
 <figure class="align-default" id="dgh-fig">
 <a class="reference internal image-reference" href="../../_images/dgh.png"><img alt="../../_images/dgh.png" src="../../_images/dgh.png" style="height: 400px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Example of Domain and Value Generalization Hierarchy</span><a class="headerlink" href="#dgh-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Example of Domain and Value Generalization Hierarchy</span><a class="headerlink" href="#dgh-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>For example, consider domain generalization for marrital status. This attribute can have four values: <span class="math notranslate nohighlight">\(DGM_{M_0}=\)</span> {married, divorced, single, widow}. A one step generalization of the domain gives us: <span class="math notranslate nohighlight">\(DGM_{M_1}\)</span> = {once_married, never_married}. But how a specific value in a table row can be generalized? E.g., which general value from <span class="math notranslate nohighlight">\(DGM_{M_1}\)</span> should replace <code class="docutils literal notranslate"><span class="pre">divorced</span></code>? It cannot be <code class="docutils literal notranslate"><span class="pre">never_married</span></code> and has to be <code class="docutils literal notranslate"><span class="pre">once_married</span></code>. These contstraints can be expressed in the value generalization hierarchy, <span class="math notranslate nohighlight">\(VGH_M\)</span>, which takes the form of a tree where a child node value can be replaced by it’s parent’s value. Thus, a value generalization hierarchy associates with each value in domain <span class="math notranslate nohighlight">\(D_i\)</span> a unique value in domain <span class="math notranslate nohighlight">\(D_j\)</span> direct generalization of <span class="math notranslate nohighlight">\(D_i\)</span>. Also note that in <span class="math notranslate nohighlight">\(DGM_M\)</span>, each domain has only one direct generalization (<span class="math notranslate nohighlight">\(DGM_{M_0}\rightarrow DGM_{M_1}\)</span>). Also, the top level domain for <span class="math notranslate nohighlight">\(DGM_M\)</span> has exactly one value. Thus, it satisfies both the conditions mentioned above.</p>
 </section>
 <section id="domain-tuple-generalization">
-<h3><span class="section-number">2.1.4. </span>Domain tuple generalization<a class="headerlink" href="#domain-tuple-generalization" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.1.4. </span>Domain tuple generalization<a class="headerlink" href="#domain-tuple-generalization" title="Link to this heading">#</a></h3>
 <p>Since we might generalize multiple attributes in a table (i.e., the quasi-identifier set contains multiple elements), it s convenient to think about generalization of domain tuple (DT) instead of single domain generalization. DT can be represented as a collection of domains: <span class="math notranslate nohighlight">\(&lt;D_1, D_2, \dots, D_n&gt;\)</span>. For example, in the case of health dataset, if the quasi-identifiers include only <code class="docutils literal notranslate"><span class="pre">{Race,</span> <span class="pre">Zip}</span></code> with domains <code class="docutils literal notranslate"><span class="pre">R</span></code> and <code class="docutils literal notranslate"><span class="pre">Z</span></code>, respectively, the tuple containing the domains for these two attributes can be represented as <span class="math notranslate nohighlight">\(&lt;R, Z&gt;\)</span>. As with a single domain, we can define generalization hierarchy for a tuple of domains. Figure <a class="reference internal" href="#dght-fig"><span class="std std-ref">Example of DT generalization hierarchy as lattice structures</span></a> shows the domain tuple generalization hierarchy (<span class="math notranslate nohighlight">\(DGH_{DT}\)</span>) for Race and Zip, and an example (right) of generalization (dotted arrow indicates that intermediate steps were omitted). It defines the different ways in which the domain tuple <span class="math notranslate nohighlight">\(&lt;R, Z&gt;\)</span> can be generalized: each path from DT to the unique maximal element of <span class="math notranslate nohighlight">\(DGH_{DT}\)</span> in the graph describing <span class="math notranslate nohighlight">\(DGH_{DT}\)</span> defines a possible alternative path that can be followed when generalizing a quasi-identifier <code class="docutils literal notranslate"><span class="pre">QI</span> <span class="pre">=</span> <span class="pre">{Race,</span> <span class="pre">Zip}</span></code> of attributes on domains <code class="docutils literal notranslate"><span class="pre">&lt;R,</span> <span class="pre">Z&gt;</span></code>.</p>
 <figure class="align-default" id="dght-fig">
 <a class="reference internal image-reference" href="../../_images/dghT.png"><img alt="../../_images/dghT.png" src="../../_images/dghT.png" style="height: 400px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2.2 </span><span class="caption-text">Example of DT generalization hierarchy as lattice structures</span><a class="headerlink" href="#dght-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Example of DT generalization hierarchy as lattice structures</span><a class="headerlink" href="#dght-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>For example, from <span class="math notranslate nohighlight">\(&lt;R_0,Z_0&gt;\)</span>, we can move to either <span class="math notranslate nohighlight">\(&lt;R_1,Z_0&gt;\)</span> (i.e., one step generalization for Race but no generalization for Zip) or <span class="math notranslate nohighlight">\(&lt;R_0,Z_1&gt;\)</span> (i.e., one step generalization for Zip only). Following different paths  for race and zip will lead to different generalized versions of the table, as shown in <a class="reference internal" href="#dgh-fig"><span class="std std-ref">Figure</span></a>. PT here denotes the private (original) table. The remaining five tables are all possible generalized tables for PT. With respect to k-anonymity, <span class="math notranslate nohighlight">\(GT_{[0,1]}\)</span> satisfies k-anonymity for k = 1, 2; <span class="math notranslate nohighlight">\(GT_{[1,0]}\)</span> satisfies k-anonymity for k = 1, 2, 3; <span class="math notranslate nohighlight">\(GT_{[0,2]}\)</span> satisfies k-anonymity for k = 1, … , 4, <span class="math notranslate nohighlight">\(GT_{[1,1]}\)</span> satisfies k-anonymity for k = 1, … , 6, and <span class="math notranslate nohighlight">\(GT_{[1,2]}\)</span> satisfies k-anonymity for k = 1, … , 12.</p>
 <figure class="align-default" id="gen-fig">
 <a class="reference internal image-reference" href="../../_images/generalization-example.png"><img alt="../../_images/generalization-example.png" src="../../_images/generalization-example.png" style="height: 400px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2.3 </span><span class="caption-text">Example of generalizing Race and Zip in a table following the DGH and VGH in <a class="reference internal" href="#dgh-fig"><span class="std std-ref">Figure</span></a></span><a class="headerlink" href="#gen-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3.3 </span><span class="caption-text">Example of generalizing Race and Zip in a table following the DGH and VGH in <a class="reference internal" href="#dgh-fig"><span class="std std-ref">Figure</span></a></span><a class="headerlink" href="#gen-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Thus, using domain tuple generalization, we can convert a table <span class="math notranslate nohighlight">\(T_i\)</span> to a generalized table <span class="math notranslate nohighlight">\(T_j\)</span>. Formally, let <span class="math notranslate nohighlight">\(T_i(A_1, \dots ,A_n)\)</span> and <span class="math notranslate nohighlight">\(T_j(A_1,\dots ,A_n)\)</span> be two tables defined on the same set of attributes. <span class="math notranslate nohighlight">\(T_j\)</span> is a generalization of <span class="math notranslate nohighlight">\(T_i\)</span> (denoted as <span class="math notranslate nohighlight">\(T_i \preceq T_j\)</span>), iff</p>
@@ -1132,14 +1133,14 @@ A sensitive attribute is an attribute whose value for any particular individual 
 <li><p>It is possible to define a bijective mapping associating each tuple <span class="math notranslate nohighlight">\(t_i\)</span> in <span class="math notranslate nohighlight">\(T_i\)</span> with a tuple <span class="math notranslate nohighlight">\(t_j\)</span> in <span class="math notranslate nohighlight">\(T_j\)</span> such that the value of each attribute <span class="math notranslate nohighlight">\(A_z\)</span> in <span class="math notranslate nohighlight">\(t_j\)</span> is equal to, or is a generalization of, the value of <span class="math notranslate nohighlight">\(A_z\)</span> in <span class="math notranslate nohighlight">\(t_i\)</span>.</p></li>
 </ol>
 <section id="how-to-use-domain-generalization-to-achieve-k-anonymity">
-<h4><span class="section-number">2.1.4.1. </span>How to use domain generalization to achieve k-anonymity?<a class="headerlink" href="#how-to-use-domain-generalization-to-achieve-k-anonymity" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.1.4.1. </span>How to use domain generalization to achieve k-anonymity?<a class="headerlink" href="#how-to-use-domain-generalization-to-achieve-k-anonymity" title="Link to this heading">#</a></h4>
 <p>Given that we can replace specific values with generic ones, how should we apply this technique in a systematic way? In the above example of voter dataset, we removed the last digit of zip code (i.e., moved from <span class="math notranslate nohighlight">\(Z_0\)</span> to <span class="math notranslate nohighlight">\(Z_1\)</span> in <span class="math notranslate nohighlight">\(DGH_Z\)</span>) and achieved 2-anonymity. But we could also have removed two digits and achieve the same effect (i.e., move from <span class="math notranslate nohighlight">\(Z_0\)</span> to <span class="math notranslate nohighlight">\(Z_2\)</span> in <span class="math notranslate nohighlight">\(DGH_Z\)</span>). Replacing with more (rather than less) general data will never violate the k-anonymity condition for a given k. That is, if we achieve 2-anonymity by using <span class="math notranslate nohighlight">\(Z_1\)</span> domain, we will definitely achieve 2-anonymity by using <span class="math notranslate nohighlight">\(Z_2\)</span> domain. But, using more general data than necessary will reduce the utility of the data, otherwise we could have always used the most generic values to get maximal privacy, but the data will most likely be useless! To achieve k-anonymity for a specific k, we start with the most specific data (that exist in the table) and generalize one domain, one step at a time until we achieve k-anonymity. This concept is captured by the definition of k-minimal generalization. To introduce it we first introduce the notion of distance vector.</p>
 <p><strong>Distance vector:</strong> Let <span class="math notranslate nohighlight">\(T_i(A1, \dots , A_n)\)</span> and <span class="math notranslate nohighlight">\(T_j(A1, \dots ,A_n)\)</span> be two tables such that <span class="math notranslate nohighlight">\(T_i\preceq T_j\)</span>. The distance vector of <span class="math notranslate nohighlight">\(T_j\)</span> from <span class="math notranslate nohighlight">\(T_i\)</span> is the vector <span class="math notranslate nohighlight">\(DV_{i,j} = [d_1, \dots , d_n]\)</span> where each <span class="math notranslate nohighlight">\(d_z, z = 1, \dots , n\)</span>, is the length of the unique path between <span class="math notranslate nohighlight">\(D_z =dom(A_z, T_i)\)</span> and <span class="math notranslate nohighlight">\(dom(A_z , T_j)\)</span> in the domain generalization hierarchy <span class="math notranslate nohighlight">\(DGH_{D_z}\)</span>. In <a class="reference internal" href="#gen-fig"><span class="std std-ref">Figure</span></a>, the distance vectors between PT
 and each of its generalized tables is the vector appearing as a subscript of the table. Similar to a <span class="math notranslate nohighlight">\(DGH_{DT}\)</span>, the corresponding distance vectors can be represented as a lattice (see <a class="reference internal" href="#dist-vector-fig"><span class="std std-ref">Domain generalization hierarchy and corresponding lattice on distance vectors</span></a>)</p>
 <figure class="align-default" id="dist-vector-fig">
 <a class="reference internal image-reference" href="../../_images/distance-vector.png"><img alt="../../_images/distance-vector.png" src="../../_images/distance-vector.png" style="height: 400px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2.4 </span><span class="caption-text">Domain generalization hierarchy and corresponding lattice on distance vectors</span><a class="headerlink" href="#dist-vector-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3.4 </span><span class="caption-text">Domain generalization hierarchy and corresponding lattice on distance vectors</span><a class="headerlink" href="#dist-vector-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p><strong>Definition: k-minimal generalization:</strong> Let <span class="math notranslate nohighlight">\(T_i(A_1, \dots , A_n)\)</span> and <span class="math notranslate nohighlight">\(T_j(A_1,\dots , A_n)\)</span> be two tables such that  <span class="math notranslate nohighlight">\(T_i \preceq T_j\)</span>. <span class="math notranslate nohighlight">\(T_j\)</span> is a k-minimal generalization of <span class="math notranslate nohighlight">\(T_i\)</span> iff</p>
@@ -1155,12 +1156,12 @@ there are only two k-minimal generalized tables for k=3, which are GT[1,0] and G
 </section>
 </section>
 <section id="suppression">
-<h2><span class="section-number">2.2. </span>Suppression<a class="headerlink" href="#suppression" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.2. </span>Suppression<a class="headerlink" href="#suppression" title="Link to this heading">#</a></h2>
 <p>Another method to anonymize a dataset is by suppressing (i.e., removing) tuples. For example, in the private table PT shown in the following <a class="reference internal" href="#suppression-fig"><span class="std std-ref">Figure</span></a>, the <strong>bold</strong> tuples can be removed to make it 2-anonymous. Note that, only <span class="math notranslate nohighlight">\(GT_{[1,1]}\)</span> achieved 2-anonymity, by applying generalization to both columns. We can also combine generalization and suppression, e.g., <span class="math notranslate nohighlight">\(GT_{[1,0]}\)</span> is not 2-anonymous even after generalizing Race, but can be made so by removing the <strong>bold</strong> column.</p>
 <figure class="align-default" id="suppression-fig">
 <a class="reference internal image-reference" href="../../_images/supp-example1.png"><img alt="../../_images/supp-example1.png" src="../../_images/supp-example1.png" style="height: 400px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2.5 </span><span class="caption-text">Example of suppressing tuples.</span><a class="headerlink" href="#suppression-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3.5 </span><span class="caption-text">Example of suppressing tuples.</span><a class="headerlink" href="#suppression-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Thus, combining generalization and suppression usually helps in satisfying k-anonymity requirements without removing as much information as would be required if only one of them was applied.</p>
@@ -1190,7 +1191,7 @@ k-anonymity. <span class="math notranslate nohighlight">\(T_j\)</span> enforces 
 <figure class="align-default" id="suppression-fig2">
 <a class="reference internal image-reference" href="../../_images/supp-example2.png"><img alt="../../_images/supp-example2.png" src="../../_images/supp-example2.png" style="height: 400px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2.6 </span><span class="caption-text">Example of anonymization with suppression and generalization.</span><a class="headerlink" href="#suppression-fig2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3.6 </span><span class="caption-text">Example of anonymization with suppression and generalization.</span><a class="headerlink" href="#suppression-fig2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Depending on the value of <code class="docutils literal notranslate"><span class="pre">MaxSup</span></code>, the following generalizations are considered minimal:</p>
@@ -1205,7 +1206,7 @@ k-anonymity. <span class="math notranslate nohighlight">\(T_j\)</span> enforces 
 <p>Generalization partially removes information from a column but affects all tuples. On the other hand, suppression completely removes information about a tuple, but does not affect any other tuples. Also, we only need to suppress columns in the QI set, all other columns can be released without modifications.</p>
 </div>
 <section id="finally-achieving-a-k-minimal-generalization">
-<h3><span class="section-number">2.2.1. </span>Finally, achieving a <span class="math notranslate nohighlight">\(k\)</span>-minimal generalization<a class="headerlink" href="#finally-achieving-a-k-minimal-generalization" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>Finally, achieving a <span class="math notranslate nohighlight">\(k\)</span>-minimal generalization<a class="headerlink" href="#finally-achieving-a-k-minimal-generalization" title="Link to this heading">#</a></h3>
 <p>Recall that we can use a tuple generalization hierarchy graph (<span class="math notranslate nohighlight">\(DGH_{DT}\)</span>) to perform generization operations to attributes belonging to a QI. Each node in the <span class="math notranslate nohighlight">\(DGH_{DT}\)</span> represents one generalization operation, and nodes in each path from bottom to top collectively represent a strategy to generalize quasi identifiers until no more generalization is possible (i.e., the maximum possible generalization has been performed).</p>
 <p>To achieve k-anonymity, we can traverse the strategies (paths) in <span class="math notranslate nohighlight">\(DGH_{DT}\)</span>, applying the generalization step specified at a node, followed by the maximum number of allowed suppressions, and stopping when we have achieved k-anonymity. In the worst case, however, we may need to search all possible paths, which can be computationally costly for large graphs. We can reduce computation by recognizing the following:</p>
 <div class="admonition note">
@@ -1217,7 +1218,7 @@ k-anonymity. <span class="math notranslate nohighlight">\(T_j\)</span> enforces 
 <figure class="align-default" id="k-anon-algo">
 <a class="reference internal image-reference" href="../../_images/k-anon-algo.png"><img alt="../../_images/k-anon-algo.png" src="../../_images/k-anon-algo.png" style="height: 600px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2.7 </span><span class="caption-text">An algorithm to finding the distance vector corresponding to a k-minimal generalization</span><a class="headerlink" href="#k-anon-algo" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3.7 </span><span class="caption-text">An algorithm to finding the distance vector corresponding to a k-minimal generalization</span><a class="headerlink" href="#k-anon-algo" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The minimality of k-minimal solution only requires that the least amount of generalization and suppression necessary should be applied to achieve k-anonymity. There can be multiple such solutions.  The algorithm above returns the solution that is at the lowest height of the generalization hierarchy. But there can be other preferences or constraints. For example, certain health data release may prefer (or require) to retain information about gender for research purposes. Such data utility constraints migth require identifying a different solution than above. Following are a set of such preference policies:</p>
@@ -1230,7 +1231,7 @@ been taken).</p></li>
 </ol>
 </section>
 <section id="full-domain-versus-local-cell-generalization">
-<h3><span class="section-number">2.2.2. </span>Full domain versus local (cell) generalization<a class="headerlink" href="#full-domain-versus-local-cell-generalization" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>Full domain versus local (cell) generalization<a class="headerlink" href="#full-domain-versus-local-cell-generalization" title="Link to this heading">#</a></h3>
 <p>The algorithm presented above to achieve k-anonymity does so by generalizing the full domain. That means, for an attribute (say Zip), all occurances of specific values (coming from domain <span class="math notranslate nohighlight">\(Z_0\)</span>) in the original table is replaced by values from another, more general domain (say <span class="math notranslate nohighlight">\(Z_2\)</span>). There are many other variants of k-anonymity. One of them is cell generalization, where each occurance of an attribute can be replaced by different general domain. Below is an example of such a table. Note that, in this generalized (4-anonymous) table, gender information has been completely removed for all rows, but some rows retained nationality. For zip, the specific values were replaced by values from different domain (some from <span class="math notranslate nohighlight">\(Z_1\)</span>, some from <span class="math notranslate nohighlight">\(Z_3\)</span>). Thus, this is not a full-domain generalization, rather individual cells were locally generalized using multiple domain. Usually such generalizations retain more utility.</p>
 <p><img alt="figure" src="../../_images/local-generalization.png" /></p>
 <hr class="docutils" />
@@ -1277,7 +1278,7 @@ been taken).</p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Anonymization techniques</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Anonymization techniques</p>
       </div>
     </a>
     <a class="right-next"
@@ -1285,7 +1286,7 @@ been taken).</p></li>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Data utility</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Data utility</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1305,19 +1306,19 @@ been taken).</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linking-attack">2.1. Linking attack</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">2.1.1. Definitions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#achieving-k-anonymity">2.1.2. Achieving k-anonymity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-generalization">2.1.3. Domain generalization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-tuple-generalization">2.1.4. Domain tuple generalization</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-domain-generalization-to-achieve-k-anonymity">2.1.4.1. How to use domain generalization to achieve k-anonymity?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linking-attack">3.1. Linking attack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">3.1.1. Definitions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#achieving-k-anonymity">3.1.2. Achieving k-anonymity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-generalization">3.1.3. Domain generalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-tuple-generalization">3.1.4. Domain tuple generalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-domain-generalization-to-achieve-k-anonymity">3.1.4.1. How to use domain generalization to achieve k-anonymity?</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suppression">2.2. Suppression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finally-achieving-a-k-minimal-generalization">2.2.1. Finally, achieving a <span class="math notranslate nohighlight">\(k\)</span>-minimal generalization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-domain-versus-local-cell-generalization">2.2.2. Full domain versus local (cell) generalization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suppression">3.2. Suppression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finally-achieving-a-k-minimal-generalization">3.2.1. Finally, achieving a <span class="math notranslate nohighlight">\(k\)</span>-minimal generalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-domain-versus-local-cell-generalization">3.2.2. Full domain versus local (cell) generalization</a></li>
 </ul>
 </li>
 </ul>

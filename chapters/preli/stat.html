@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Anonymization techniques &#8212; Data and Information Privacy</title>
+    <title>Basics of statistics &#8212; Data and Information Privacy</title>
   
   
   
@@ -65,11 +65,9 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/anonymizations/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/preli/stat';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3. K-anonymity" href="k-anon.html" />
-    <link rel="prev" title="1. Preliminaries" href="../preli/probability.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -131,6 +129,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -178,12 +178,12 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../preli/probability.html">1. Preliminaries</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Anonymization techniques</a></li>
-<li class="toctree-l1"><a class="reference internal" href="k-anon.html">3. K-anonymity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utility.html">4. Data utility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="other-techniques.html">5. Other anonymization techniques</a></li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="probability.html">1. Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anonymizations/intro.html">2. Anonymization techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anonymizations/k-anon.html">3. K-anonymity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anonymizations/utility.html">4. Data utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anonymizations/other-techniques.html">5. Other anonymization techniques</a></li>
 </ul>
 
     </div>
@@ -255,7 +255,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/anonymizations/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/preli/stat.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -285,7 +285,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/chapters/anonymizations/intro.ipynb" target="_blank"
+      <li><a href="../../_sources/chapters/preli/stat.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -369,7 +369,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Anonymization techniques</h1>
+    <h1>Basics of statistics</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -379,14 +379,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-examples">2.1. Motivating examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medical-data-linking-taken-from-sweeneykanon-2002">2.1.1. Medical data linking (Taken from <span class="xref cite">sweeneyKanon-2002</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-search-log">2.1.2. Web search log</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netflix-challenge">2.1.3. Netflix challenge</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#genome-data-leak">2.1.4. Genome data leak</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-your-friends">2.1.5. Find your friends</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mutual-information">Mutual information</a></li>
 </ul>
             </nav>
         </div>
@@ -398,101 +392,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="anonymization-techniques">
-<h1><span class="section-number">2. </span>Anonymization techniques<a class="headerlink" href="#anonymization-techniques" title="Link to this heading">#</a></h1>
-<section id="motivating-examples">
-<h2><span class="section-number">2.1. </span>Motivating examples<a class="headerlink" href="#motivating-examples" title="Link to this heading">#</a></h2>
-<p>These examples were taken from various other sources (<span id="id1">[<a class="reference internal" href="../dp/0-dp-main.html#id1044" title="Ninghui Li, Min Lyu, Dong Su, and Weining Yang. Differential Privacy: From Theory to Practice. Springer, 2017.">LLSY17</a>]</span>).</p>
-<section id="medical-data-linking-taken-from-sweeneykanon-2002">
-<h3><span class="section-number">2.1.1. </span>Medical data linking (Taken from <span id="id2">[]</span>)<a class="headerlink" href="#medical-data-linking-taken-from-sweeneykanon-2002" title="Link to this heading">#</a></h3>
-<p>The National Association of Health Data Organizations (NAHDO) reported
-that 37 states in the USA have legislative mandates to collect hospital level
-data and that 17 states have started collecting ambulatory care data from
-hospitals, physicians offices, clinics, and so on. The leftmost circle in
-the figure below contains a subset of the fields of information, or attributes, that
-NAHDO recommends these states collect; these attributes include the
-patient’s ZIP code, birth date, gender, and ethnicity.</p>
-<p>In Massachusetts, the Group Insurance Commission (GIC) buys health insurance for state employees. GIC collected nearly one hundred attributes from approximately 135,000 state employees and their families. Because the data were believed to be anonymous, GIC gave a copy of the data to researchers and sold a copy to industry. For twenty dollars, the researcher (SWEENEY) purchased the voter registration list for Cambridge Massachusetts and received the information on two diskettes. The rightmost circle in the Figure below shows that these data included the name, address, ZIP code, birth date, and gender of each voter. This information can be linked
-using ZIP code, birth date and gender to the medical information, thereby linking diagnosis, procedures, and medications to particularly named individuals.</p>
-<figure class="align-default" id="id1180">
-<a class="reference internal image-reference" href="../../_images/hospital-voter.png"><img alt="../../_images/hospital-voter.png" src="../../_images/hospital-voter.png" style="height: 400px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Linking to re-identify data (from Latanya Sweeney, 2002).</span><a class="headerlink" href="#id1180" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p>For example, William Weld was governor of Massachusetts at that time
-and his medical records were in the GIC data. Governor Weld lived in
-Cambridge Massachusetts. According to the Cambridge Voter list, six people
-had his particular birth date; only three of them were men; and, he was the
-only one in his 5-digit ZIP code.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="basics-of-statistics">
+<h1>Basics of statistics<a class="headerlink" href="#basics-of-statistics" title="Link to this heading">#</a></h1>
+<section id="correlation">
+<h2>Correlation<a class="headerlink" href="#correlation" title="Link to this heading">#</a></h2>
 </section>
-<section id="web-search-log">
-<h3><span class="section-number">2.1.2. </span>Web search log<a class="headerlink" href="#web-search-log" title="Link to this heading">#</a></h3>
-<p>In 2006, AOL released three months of web search logs from 650,000 users. To prevent identification, the user ids were replaced with random numbers. This proved to be a failure. Two New
-York Times journalists, Barbaro and Tom Zeller, were able to re-identify Thelma Arnold,
-a 62-year-old women living in Lilburn, GA, from the published search logs. Ms. Arnold’s search
-log includes her last name and location names near where she lived. The reporters were able to
-cross-reference this information with phonebook entries. After the New York Times article had
-been published, the data was immediately retracted by AOL. Later a class action lawsuit was
-filed against AOL. This scandal led to the resignation of AOL’s CTO and the dismissal of two
-employees.</p>
-</section>
-<section id="netflix-challenge">
-<h3><span class="section-number">2.1.3. </span>Netflix challenge<a class="headerlink" href="#netflix-challenge" title="Link to this heading">#</a></h3>
-<p>In 2009, Netflix released the movie rating dataset containing ratings from 500,000 users
-as part of a one-million dollar challenge for developing effective data mining algorithms for predicting users’ movie preferences based on their viewing history and ratings. The data was anonymized in order to protect users’ privacy, Narayanan and Shmatikov showed that an adversary can identify the subscriber’s record if they have prior knowledge on the users movie viewing experience. For example, Narayanan and Shmatikov showed that, from the profiles of 50 IMDB users, at least two of them also appear in the Netflix dataset.</p>
-</section>
-<section id="genome-data-leak">
-<h3><span class="section-number">2.1.4. </span>Genome data leak<a class="headerlink" href="#genome-data-leak" title="Link to this heading">#</a></h3>
-<p>Another privacy incident targeted the Genome-Wide Association Studies (GWAS). These
-studies normally compare the DNA sequences of people who has a particular disease with similar people without that disease. Each person’s DNA mutations (singlenucleotide
-polymorphisms, or SNPs) at indicative locations are read, and this information is then
-analyzed. Traditionally, researchers publish aggregate frequencies of SNPs for participants in the
-two groups. In 2008, Homer et al. proposed attacks that could tell with high confidence
-whether an individual has the disease, assuming that the individual’s DNA is known. The
-attack works even if the group includes hundreds of individuals. Because of the privacy concerns
-from such attacks, a number of institutions, including the U.S. National Institute of Health
-(NIH) and the Wellcome Trust in London all decided to restrict access to data from GWAS.
-Such attacks need access to the victim’s DNA data and publicly available genomic database to
-establish the likely SNP frequencies in the general population.</p>
-</section>
-<section id="find-your-friends">
-<h3><span class="section-number">2.1.5. </span>Find your friends<a class="headerlink" href="#find-your-friends" title="Link to this heading">#</a></h3>
-<p>Another example of the failure of naive “data anonymization” is location-based social
-networks that provide friend discovery feature by location proximity, documented by Li et al. These social networks try to provide some privacy protection by using a number of
-location-obfuscating techniques. One technique is to show to a user only relative distances of
-other users to her, instead of their location coordinates. Another is to set a limit on the precision
-of the reported information. For example, Skout defines localization accuracy to 1 mile, i.e., users
-will be located with an accuracy no better than 1 mile. Similarly, Wechat and Momo set 100 m and 10 m as their localization accuracy limits. Yet another technique is to restrict a user’s view
-to within a certain distance of the user, or to no more than a certain number of users. Li et al. demonstrated the effectiveness of attacks that use lots of fake locations to issue many
-queries and then aggregate this information to infer the exact locations of users.</p>
-<hr class="docutils" />
-<p><strong>References</strong></p>
-<div class="docutils container" id="id3">
-<div role="list" class="citation-list">
-<div class="citation" id="id944" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>LLV07<span class="fn-bracket">]</span></span>
-<p>Ninghui Li, Tiancheng Li, and Suresh Venkatasubramanian. T-Closeness: Privacy Beyond k-Anonymity and l-Diversity. In <em>2007 IEEE 23rd International Conference on Data Engineering</em>, 106–115. Istanbul, April 2007. IEEE. <a class="reference external" href="https://doi.org/10.1109/ICDE.2007.367856">doi:10.1109/ICDE.2007.367856</a>.</p>
-</div>
-<div class="citation" id="id1046" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">LLSY17</a><span class="fn-bracket">]</span></span>
-<p>Ninghui Li, Min Lyu, Dong Su, and Weining Yang. <em>Differential Privacy: From Theory to Practice</em>. Springer, 2017.</p>
-</div>
-<div class="citation" id="id943" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>MKGV07<span class="fn-bracket">]</span></span>
-<p>Ashwin Machanavajjhala, Daniel Kifer, Johannes Gehrke, and Muthuramakrishnan Venkitasubramaniam. \emph L -diversity: Privacy beyond \emph k -anonymity. <em>ACM Transactions on Knowledge Discovery from Data</em>, 1(1):3, March 2007. <a class="reference external" href="https://doi.org/10.1145/1217299.1217302">doi:10.1145/1217299.1217302</a>.</p>
-</div>
-<div class="citation" id="id1047" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>NA21<span class="fn-bracket">]</span></span>
-<p><strong>missing publisher in programmingDP2021</strong></p>
-</div>
-<div class="citation" id="id916" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>SS98<span class="fn-bracket">]</span></span>
-<p><strong>missing journal in samarati1998protecting</strong></p>
-</div>
-</div>
-</div>
-</section>
+<section id="mutual-information">
+<h2>Mutual information<a class="headerlink" href="#mutual-information" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -509,7 +415,7 @@ queries and then aggregate this information to infer the exact locations of user
         },
         kernelOptions: {
             name: "python3",
-            path: "./chapters/anonymizations"
+            path: "./chapters/preli"
         },
         predefinedOutput: true
     }
@@ -526,24 +432,6 @@ queries and then aggregate this information to infer the exact locations of user
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../preli/probability.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Preliminaries</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="k-anon.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>K-anonymity</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -560,14 +448,8 @@ queries and then aggregate this information to infer the exact locations of user
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-examples">2.1. Motivating examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medical-data-linking-taken-from-sweeneykanon-2002">2.1.1. Medical data linking (Taken from <span class="xref cite">sweeneyKanon-2002</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-search-log">2.1.2. Web search log</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#netflix-challenge">2.1.3. Netflix challenge</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#genome-data-leak">2.1.4. Genome data leak</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-your-friends">2.1.5. Find your friends</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mutual-information">Mutual information</a></li>
 </ul>
   </nav></div>
 

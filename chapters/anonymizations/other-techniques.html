@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Other anonymization techniques &#8212; Data and Information Privacy</title>
+    <title>5. Other anonymization techniques &#8212; Data and Information Privacy</title>
   
   
   
@@ -70,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/anonymizations/other-techniques';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="3. Data utility" href="utility.html" />
+    <link rel="prev" title="4. Data utility" href="utility.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,10 +180,11 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">1. Anonymization techniques</a></li>
-<li class="toctree-l1"><a class="reference internal" href="k-anon.html">2. K-anonymity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utility.html">3. Data utility</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Other anonymization techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preli/probability.html">1. Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">2. Anonymization techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="k-anon.html">3. K-anonymity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utility.html">4. Data utility</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Other anonymization techniques</a></li>
 </ul>
 
     </div>
@@ -379,21 +380,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-k-anonymity">4.1. Limitations of k-anonymity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneity-attack">4.2. Homogeneity attack</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-knowledge-attack">4.3. Background Knowledge Attack.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-diversity">4.4. <span class="math notranslate nohighlight">\(l-\)</span>diversity</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distinct-l-diversity">4.4.1. Distinct <span class="math notranslate nohighlight">\(l-\)</span>diversity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-l-diversity">4.4.2. Entropy <span class="math notranslate nohighlight">\(l-\)</span>diversity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-c-l-diversity">4.4.3. Recursive <span class="math notranslate nohighlight">\((c,l)-\)</span>diversity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-l-diversity">4.4.4. Limitations of <span class="math notranslate nohighlight">\(l-\)</span>diversity</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#difficult-to-achieve-or-drastic-loss-of-data-utility">4.4.4.1. Difficult to achieve or drastic loss of data utility</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-k-anonymity">5.1. Limitations of k-anonymity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneity-attack">5.2. Homogeneity attack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-knowledge-attack">5.3. Background Knowledge Attack.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-diversity">5.4. <span class="math notranslate nohighlight">\(l-\)</span>diversity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distinct-l-diversity">5.4.1. Distinct <span class="math notranslate nohighlight">\(l-\)</span>diversity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-l-diversity">5.4.2. Entropy <span class="math notranslate nohighlight">\(l-\)</span>diversity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-c-l-diversity">5.4.3. Recursive <span class="math notranslate nohighlight">\((c,l)-\)</span>diversity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-l-diversity">5.4.4. Limitations of <span class="math notranslate nohighlight">\(l-\)</span>diversity</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#difficult-to-achieve-or-drastic-loss-of-data-utility">5.4.4.1. Difficult to achieve or drastic loss of data utility</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-diversity-cannot-prevent-attribute-disclosure">4.4.5. <span class="math notranslate nohighlight">\(l-\)</span>diversity cannot prevent attribute disclosure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-diversity-cannot-prevent-attribute-disclosure">5.4.5. <span class="math notranslate nohighlight">\(l-\)</span>diversity cannot prevent attribute disclosure</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#t-closeness">4.5. <span class="math notranslate nohighlight">\(t-\)</span>closeness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#t-closeness">5.5. <span class="math notranslate nohighlight">\(t-\)</span>closeness</a></li>
 </ul>
             </nav>
         </div>
@@ -406,14 +407,14 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="other-anonymization-techniques">
-<h1><span class="section-number">4. </span>Other anonymization techniques<a class="headerlink" href="#other-anonymization-techniques" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">5. </span>Other anonymization techniques<a class="headerlink" href="#other-anonymization-techniques" title="Link to this heading">#</a></h1>
 <section id="limitations-of-k-anonymity">
-<h2><span class="section-number">4.1. </span>Limitations of k-anonymity<a class="headerlink" href="#limitations-of-k-anonymity" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.1. </span>Limitations of k-anonymity<a class="headerlink" href="#limitations-of-k-anonymity" title="Link to this heading">#</a></h2>
 <p>There are multiple possible attacks on a k-anonymized dataset. Below, we explain two, with examples taken from <span id="id1">[<a class="reference internal" href="../dp/0-dp-main.html#id941" title="Ashwin Machanavajjhala, Daniel Kifer, Johannes Gehrke, and Muthuramakrishnan Venkitasubramaniam. \emph L -diversity: Privacy beyond \emph k -anonymity. ACM Transactions on Knowledge Discovery from Data, 1(1):3, March 2007. doi:10.1145/1217299.1217302.">MKGV07</a>]</span>. We will use the following table and it’s 4-anonymized version.</p>
 <p><img alt="figure" src="../../_images/l-diversity-example.png" /></p>
 </section>
 <section id="homogeneity-attack">
-<h2><span class="section-number">4.2. </span>Homogeneity attack<a class="headerlink" href="#homogeneity-attack" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.2. </span>Homogeneity attack<a class="headerlink" href="#homogeneity-attack" title="Link to this heading">#</a></h2>
 <p>Alice and Bob are antagonistic neighbors. One day Bob falls ill and is taken by ambulance to the hospital. Having seen the ambulance, Alice sets out to discover what disease Bob is suffering from. Alice discovers the 4-anonymous table of current inpatient records published by the hospital, and so she knows that one of the records in this table contains Bob’s data. Since Alice is Bob’s neighbor, she knows that Bob is a 31-year old American male who lives in the zip code 13053. Therefore, Alice knows that Bob’s record number is 9, 10, 11, or 12. All of those patients have the same medical condition (cancer), and so Alice concludes that Bob has cancer.
 Thus, k-Anonymity can create groups that leak information due to lack of diversity in the sensitive attribute.</p>
 <div class="admonition note">
@@ -424,7 +425,7 @@ Thus, k-Anonymity can create groups that leak information due to lack of diversi
 <p>The remedy to this problem is obvious: k-anonymized tables should also ensure diversity in the equivalent classes in terms of values of the sensitive attribute. That is, all tuples with the same values of their quasi-identifiers should have diverse values for their sensitive attributes. But how to achieve this diversity?</p>
 </section>
 <section id="background-knowledge-attack">
-<h2><span class="section-number">4.3. </span>Background Knowledge Attack.<a class="headerlink" href="#background-knowledge-attack" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.3. </span>Background Knowledge Attack.<a class="headerlink" href="#background-knowledge-attack" title="Link to this heading">#</a></h2>
 <p>Alice has a pen-friend named Umeko who is admitted to the same hospital as Bob and whose patient records also appear in the table shown above. Alice knows that Umeko is a 21-year old Japanese
 female who currently lives in zip code 13068. Based on this information, Alice learns that Umeko’s information is contained in record number 1,2,3, or 4. Without additional information, Alice is not sure whether Umeko caught a virus or has heart disease. However, it is well known that Japanese have an
 extremely low incidence of heart disease. Therefore Alice concludes with near certainty that Umeko has a viral infection. <strong>Thus, k-Anonymity does not protect against attacks based on background knowledge.</strong> Access to such background knowledge is also common. For example, employers might be required to publish vaccination or medical history of all state employees.</p>
@@ -432,11 +433,11 @@ extremely low incidence of heart disease. Therefore Alice concludes with near ce
 <p>sec_l_div=</p>
 </section>
 <section id="l-diversity">
-<h2><span class="section-number">4.4. </span><span class="math notranslate nohighlight">\(l-\)</span>diversity<a class="headerlink" href="#l-diversity" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.4. </span><span class="math notranslate nohighlight">\(l-\)</span>diversity<a class="headerlink" href="#l-diversity" title="Link to this heading">#</a></h2>
 <p>An equivalence class (<span class="math notranslate nohighlight">\(EC\)</span>) is <span class="math notranslate nohighlight">\(l-\)</span>diverse if it contains at least <span class="math notranslate nohighlight">\(l\)</span> <em>well-represented</em> values for the sensitive attribute 𝚂. A table is <span class="math notranslate nohighlight">\(l-\)</span>diverse if every <span class="math notranslate nohighlight">\(EC\)</span> is <span class="math notranslate nohighlight">\(l-\)</span>diverse.</p>
 <p>Note the stress on <em>well-represented</em>, what does it mean and how to ensure this property? We will see variants in <span class="math notranslate nohighlight">\(l-\)</span>diversity based on different definitions of well-representedness.</p>
 <section id="distinct-l-diversity">
-<h3><span class="section-number">4.4.1. </span>Distinct <span class="math notranslate nohighlight">\(l-\)</span>diversity<a class="headerlink" href="#distinct-l-diversity" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.4.1. </span>Distinct <span class="math notranslate nohighlight">\(l-\)</span>diversity<a class="headerlink" href="#distinct-l-diversity" title="Link to this heading">#</a></h3>
 <p>This variant ensures that each equivalent class has at least <span class="math notranslate nohighlight">\(l\)</span> distinct values for the sensitive attribute. The following 4-anonymous table has been converted to a <span class="math notranslate nohighlight">\(3-\)</span>diverse table (<span class="math notranslate nohighlight">\(l=3\)</span>) since each <span class="math notranslate nohighlight">\(EC\)</span> has three values for the <code class="docutils literal notranslate"><span class="pre">Condition</span></code> column.</p>
 <figure class="align-default" id="diversity">
 <a class="reference internal image-reference" href="../../_images/3-diversity.png"><img alt="../../_images/3-diversity.png" src="../../_images/3-diversity.png" style="height: 250px;" /></a>
@@ -445,7 +446,7 @@ extremely low incidence of heart disease. Therefore Alice concludes with near ce
 </section>
 <hr class="docutils" />
 <section id="entropy-l-diversity">
-<h3><span class="section-number">4.4.2. </span>Entropy <span class="math notranslate nohighlight">\(l-\)</span>diversity<a class="headerlink" href="#entropy-l-diversity" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.4.2. </span>Entropy <span class="math notranslate nohighlight">\(l-\)</span>diversity<a class="headerlink" href="#entropy-l-diversity" title="Link to this heading">#</a></h3>
 <p>Another notion capturing the idea of well-represented class is based on entropy, which measures the <em>uncertainty</em> of the values under a class. Formally, the entropy of an equivalent class <span class="math notranslate nohighlight">\(EC\)</span> is defined to be.
 <span class="math notranslate nohighlight">\(H(EC) = - \sum_{s\in S} p(EC,s) \log{(p(EC,s))}\)</span> where <span class="math notranslate nohighlight">\(S\)</span> is the domain of the sensitive attribute, and
 <span class="math notranslate nohighlight">\(p(EC, s)\)</span> is the fraction of records in <span class="math notranslate nohighlight">\(EC\)</span> that have sensitive value <span class="math notranslate nohighlight">\(s\)</span>.<br />
@@ -459,7 +460,7 @@ A table is entropy <span class="math notranslate nohighlight">\(l-\)</span>diver
 <p>Because of the above constraint, entropy <span class="math notranslate nohighlight">\(l-\)</span>diversity is considered too strict and often cannot be satisfied. Below is another variant that is less strict.</p>
 </section>
 <section id="recursive-c-l-diversity">
-<h3><span class="section-number">4.4.3. </span>Recursive <span class="math notranslate nohighlight">\((c,l)-\)</span>diversity<a class="headerlink" href="#recursive-c-l-diversity" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.4.3. </span>Recursive <span class="math notranslate nohighlight">\((c,l)-\)</span>diversity<a class="headerlink" href="#recursive-c-l-diversity" title="Link to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(m\)</span> be the number of values in an equivalence class, and <span class="math notranslate nohighlight">\(r_i\)</span>  (<span class="math notranslate nohighlight">\(1\leq i \leq m\)</span>) be the number of times that the ith most frequent sensitive value appears in an equivalence class <span class="math notranslate nohighlight">\(EC\)</span>.
 Then, <span class="math notranslate nohighlight">\(EC\)</span> has recursive <span class="math notranslate nohighlight">\((c, l)-\)</span>diversity if <span class="math notranslate nohighlight">\(r_1 &lt; c(r_l+ r_{(l+1)}+ \dots + r_m)\)</span> where <span class="math notranslate nohighlight">\(c\)</span> is a constant.</p>
 <p>A table is said to have recursive <span class="math notranslate nohighlight">\((c, l)-\)</span>diversity if all of its equivalence classes have recursive  <span class="math notranslate nohighlight">\((c, l)-\)</span>diversity.</p>
@@ -473,16 +474,16 @@ the second and third most frequent values, both <code class="docutils literal no
 Then, <span class="math notranslate nohighlight">\(EC\)</span> has recursive <span class="math notranslate nohighlight">\((c, 2)-\)</span>diversity if <span class="math notranslate nohighlight">\(r_1 &lt; c(r_2 + r_3)\)</span>, or if <span class="math notranslate nohighlight">\(2&lt;c*2\)</span>. To make it true, <span class="math notranslate nohighlight">\(c\)</span> must be selected <span class="math notranslate nohighlight">\(c&gt;1\)</span>, any smaller value will further tighten the condition which cannot be satisfied. Note also that, a larger <span class="math notranslate nohighlight">\(l=3\)</span> will also tighten the condition because then <span class="math notranslate nohighlight">\(2&lt;c*1\)</span> has to be true, that will require further increasing <span class="math notranslate nohighlight">\(c\)</span> to gain some flexibility. The parameter <span class="math notranslate nohighlight">\(l\)</span> decides how many of the <em>least</em> frequent counts to consider, the larger the value, the smaller their total (<span class="math notranslate nohighlight">\(r_l+\dots +r_m\)</span>) will be, and the more stricter the condition will be; the parameter <span class="math notranslate nohighlight">\(c\)</span> can be increassed to satisfy the condition.</p>
 </section>
 <section id="limitations-of-l-diversity">
-<h3><span class="section-number">4.4.4. </span>Limitations of <span class="math notranslate nohighlight">\(l-\)</span>diversity<a class="headerlink" href="#limitations-of-l-diversity" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.4.4. </span>Limitations of <span class="math notranslate nohighlight">\(l-\)</span>diversity<a class="headerlink" href="#limitations-of-l-diversity" title="Link to this heading">#</a></h3>
 <section id="difficult-to-achieve-or-drastic-loss-of-data-utility">
-<h4><span class="section-number">4.4.4.1. </span>Difficult to achieve or drastic loss of data utility<a class="headerlink" href="#difficult-to-achieve-or-drastic-loss-of-data-utility" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">5.4.4.1. </span>Difficult to achieve or drastic loss of data utility<a class="headerlink" href="#difficult-to-achieve-or-drastic-loss-of-data-utility" title="Link to this heading">#</a></h4>
 <p>Consider a dataset containing a sensitive attribute, whether someone was infected with a rare disease (binary: Y or N), which was true for only <span class="math notranslate nohighlight">\(1\%\)</span> of the total entries (<span class="math notranslate nohighlight">\(N=100,000\)</span>). In this case, an entry is not sensitive if the value is <code class="docutils literal notranslate"><span class="pre">N</span></code> for the sensitive column, which is true for <span class="math notranslate nohighlight">\(99\%\)</span> of them. Thus achieving <span class="math notranslate nohighlight">\(l-\)</span>diversity is unnecessary here cor equivalent classes containing only <code class="docutils literal notranslate"><span class="pre">N</span></code> values. But, if one wants to have 2-diversity, then there can be only 100 equivalent classes because there are only 100 entries with <code class="docutils literal notranslate"><span class="pre">Y</span></code> value and they need to be distributed in across the equivalent classes. Such restrictions also can drastically reduce data utility. Consider the following table with only one quasi-identifier, Zip:</p>
 <p><img alt="figure" src="../../_images/l-diversity-application.png" /></p>
 <p>The middle table shows equivalent classes with two entries each, they satisfy 2-diversity. But the values of zipcode have to be almost completely removed before publishing. If we wanted to apply entropy <span class="math notranslate nohighlight">\(l-\)</span>diversity, we would have to choose a small <span class="math notranslate nohighlight">\(l\)</span> since the total entropy of the table is small (remember <span class="math notranslate nohighlight">\(H(T)\geq \log(l)\)</span>).</p>
 </section>
 </section>
 <section id="l-diversity-cannot-prevent-attribute-disclosure">
-<h3><span class="section-number">4.4.5. </span><span class="math notranslate nohighlight">\(l-\)</span>diversity cannot prevent attribute disclosure<a class="headerlink" href="#l-diversity-cannot-prevent-attribute-disclosure" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.4.5. </span><span class="math notranslate nohighlight">\(l-\)</span>diversity cannot prevent attribute disclosure<a class="headerlink" href="#l-diversity-cannot-prevent-attribute-disclosure" title="Link to this heading">#</a></h3>
 <p><strong>Skewness Attack:</strong> If the overall distribution of a sensitive attribute in a table is skewed, satisfying  -diversity does not prevent attribute disclosure.
 Consider again the example table with 100000 entries where <span class="math notranslate nohighlight">\(1\%\)</span> have positive values for a disease. Suppose that one equivalence class has an equal number of positive records
 and negative records. Even though it satisfies distinct 2-diversity, entropy
@@ -502,7 +503,7 @@ and negative records. Even though it satisfies distinct 2-diversity, entropy
 </section>
 </section>
 <section id="t-closeness">
-<h2><span class="section-number">4.5. </span><span class="math notranslate nohighlight">\(t-\)</span>closeness<a class="headerlink" href="#t-closeness" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.5. </span><span class="math notranslate nohighlight">\(t-\)</span>closeness<a class="headerlink" href="#t-closeness" title="Link to this heading">#</a></h2>
 <p>Intuitively, the loss of privacy can be measured by how much information was gained by an attacker after observing a dataset (compared to before observing it). The <span class="math notranslate nohighlight">\(t-\)</span>closeness captures this notion and attempts to minimize the information gain. Let’s try to understand this concept with examples.</p>
 <p>Consider that before seeing any data, an attacker might have some prior belief about someone’s health condition. We can represent this prior belief with a probability distribution over the possible conditions. Let’s assume that there are 100 possible conditions: <code class="docutils literal notranslate"><span class="pre">{heart</span> <span class="pre">disease,</span> <span class="pre">viral</span> <span class="pre">infection,</span> <span class="pre">cancer,</span> <span class="pre">flu,</span> <span class="pre">...}</span></code> and the prior belief <span class="math notranslate nohighlight">\(\alpha\)</span> is a uniform probability distribution over this set. Now, if a health research center publishes the number of people suffering from different conditions (and no other information), then attacker’s prior belief will change after seeing this data. For example, previously the attacker believed that the probablity of someone suffering from cancer is <span class="math notranslate nohighlight">\(.01\%\)</span>, but in reality, cancer might be much more frequent (unfortunately). Thus, the attacker’s belief about an individual will also change. Let’s assume this new belief is <span class="math notranslate nohighlight">\(\beta\)</span> (and the population level distribution of health condition is <span class="math notranslate nohighlight">\(Q\)</span>). Thus, the change in information gain is <span class="math notranslate nohighlight">\(\beta - \alpha\)</span>. Note that, this information gain is about the whole population, i.e., the attacker learns new information at the population level, but did not learn anything new about any specific individual.</p>
 <p>Now consider that the attacker’s belief will again change after seeing the anonymized table shown below:</p>
@@ -563,7 +564,7 @@ and negative records. Even though it satisfies distinct 2-diversity, entropy
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Data utility</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Data utility</p>
       </div>
     </a>
 </div>
@@ -582,21 +583,21 @@ and negative records. Even though it satisfies distinct 2-diversity, entropy
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-k-anonymity">4.1. Limitations of k-anonymity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneity-attack">4.2. Homogeneity attack</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-knowledge-attack">4.3. Background Knowledge Attack.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-diversity">4.4. <span class="math notranslate nohighlight">\(l-\)</span>diversity</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distinct-l-diversity">4.4.1. Distinct <span class="math notranslate nohighlight">\(l-\)</span>diversity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-l-diversity">4.4.2. Entropy <span class="math notranslate nohighlight">\(l-\)</span>diversity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-c-l-diversity">4.4.3. Recursive <span class="math notranslate nohighlight">\((c,l)-\)</span>diversity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-l-diversity">4.4.4. Limitations of <span class="math notranslate nohighlight">\(l-\)</span>diversity</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#difficult-to-achieve-or-drastic-loss-of-data-utility">4.4.4.1. Difficult to achieve or drastic loss of data utility</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-k-anonymity">5.1. Limitations of k-anonymity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneity-attack">5.2. Homogeneity attack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-knowledge-attack">5.3. Background Knowledge Attack.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-diversity">5.4. <span class="math notranslate nohighlight">\(l-\)</span>diversity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distinct-l-diversity">5.4.1. Distinct <span class="math notranslate nohighlight">\(l-\)</span>diversity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-l-diversity">5.4.2. Entropy <span class="math notranslate nohighlight">\(l-\)</span>diversity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-c-l-diversity">5.4.3. Recursive <span class="math notranslate nohighlight">\((c,l)-\)</span>diversity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-l-diversity">5.4.4. Limitations of <span class="math notranslate nohighlight">\(l-\)</span>diversity</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#difficult-to-achieve-or-drastic-loss-of-data-utility">5.4.4.1. Difficult to achieve or drastic loss of data utility</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-diversity-cannot-prevent-attribute-disclosure">4.4.5. <span class="math notranslate nohighlight">\(l-\)</span>diversity cannot prevent attribute disclosure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-diversity-cannot-prevent-attribute-disclosure">5.4.5. <span class="math notranslate nohighlight">\(l-\)</span>diversity cannot prevent attribute disclosure</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#t-closeness">4.5. <span class="math notranslate nohighlight">\(t-\)</span>closeness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#t-closeness">5.5. <span class="math notranslate nohighlight">\(t-\)</span>closeness</a></li>
 </ul>
   </nav></div>
 
