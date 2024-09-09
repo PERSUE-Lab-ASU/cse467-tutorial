@@ -381,11 +381,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attack-model">Attack model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attack-model">Attack model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neighboring-datasets">Neighboring datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivity-of-a-function">Sensitivity of a function</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-for-differential-privacy">Intuition for Differential Privacy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#privacy-loss">Privacy Loss</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-differential-privacy"><span class="math notranslate nohighlight">\(\epsilon-\)</span>Differential Privacy</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bounded-and-unbounded-dp">Bounded and Unbounded DP</a></li>
@@ -411,27 +412,37 @@ document.write(`
 <section id="attack-model">
 <h2>Attack model<a class="headerlink" href="#attack-model" title="Link to this heading">#</a></h2>
 <p>We have studied privacy attacks where attackers learn sensitive information about an individual by linking two (or more) published data sources. What if the datasets are not published? For example, imagine a situation where a hospital dataset is created, as shown below, where anyone can query it to learn aggregated statistics (e.g., “how many people suffer from obesity?”) but the actual dataset is never released.</p>
-<figure class="align-default" id="medical-record">
-<a class="reference internal image-reference" href="../../_images/medical-record.png"><img alt="../../_images/medical-record.png" src="../../_images/medical-record.png" style="height: 400px;" /></a>
-</figure>
-<p>You know that your neighbor Igor goes to the same hospita. You know Igor’s Nationality (and obviously, Zip and gender!) and know or guess age. Can you learn, by quering the dataset, and not by directly accessing it, what medical problem Igor is suffering from?</p>
-<p>The answer is, unfortunately, <strong>Yes</strong>, which is why we have this chapter. By progressively adding new conditions to your query, you can determine what Igor is suffering from. For example, you can query: <em>how many people, who are</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;remove-input&quot;</span>
-    <span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">health</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;health.csv&#39;</span><span class="p">)[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;SSN&#39;</span><span class="p">,</span> <span class="s1">&#39;Marital status&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="s1">&#39;Ethnicity&#39;</span><span class="p">,</span> <span class="s1">&#39;Problem&#39;</span> <span class="p">]]</span>
+<span class="n">health</span><span class="p">[[</span><span class="s1">&#39;Marital status&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="s1">&#39;Ethnicity&#39;</span><span class="p">,</span> <span class="s1">&#39;Problem&#39;</span> <span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">health</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;health.csv&#39;</span><span class="p">)[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;SSN&#39;</span><span class="p">,</span> <span class="s1">&#39;Marital status&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="s1">&#39;Ethnicity&#39;</span><span class="p">,</span> <span class="s1">&#39;Problem&#39;</span> <span class="p">]]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">health</span><span class="p">[[</span><span class="s1">&#39;Marital status&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="s1">&#39;Ethnicity&#39;</span><span class="p">,</span> <span class="s1">&#39;Problem&#39;</span> <span class="p">]]</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">adult</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../datasets/adult_with_pii.csv&#39;</span><span class="p">)</span><span class="c1">#[[&quot;age&quot;, &quot;education&quot;, &quot;marital status&quot;, &quot;occupation&quot;,</span>
-                                                          <span class="c1">#&quot;relationship&quot;,&quot;native-country&quot;,  &quot;workclass&quot;, &quot;fnlwgt&quot;, &quot;education-num&quot;, &quot;capital-gain&quot;, &quot;capital-loss&quot;, &quot;hours-per-week&quot;,</span>
-                                                <span class="c1">#           &quot;race&quot;, &quot;gender&quot;,  &quot;salary&quot;]]</span>
-<span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;DOB&#39;</span><span class="p">,</span> <span class="s1">&#39;SSN&#39;</span><span class="p">,</span> <span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="s1">&#39;Education&#39;</span><span class="p">,</span> <span class="s1">&#39;Marital Status&#39;</span><span class="p">,</span> <span class="s1">&#39;Occupation&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;Sex&#39;</span><span class="p">]</span>
-<span class="n">adult</span><span class="o">.</span><span class="n">head</span><span class="p">()[</span><span class="n">columns</span><span class="p">]</span>
+<span class="ne">NameError</span>: name &#39;pd&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>You know that your neighbor Igor goes to the same hospital. You know Igor’s Ethnicity (and obviously, Zip, marital status, and gender!). Assume that the database owner removed any direct identifiers or does not allow quering using them (e.g.,  you cannot ask “what medical problems people have who are named ‘Igor’?” Can you learn, by quering the dataset, and not by directly accessing it, what medical problem Igor is suffering from?</p>
+<p>The answer is, unfortunately, <strong>Yes</strong>, which is why we have this chapter.  Before looking into how, lets learn about the concept of <code class="docutils literal notranslate"><span class="pre">Neighboring</span> <span class="pre">datasets</span></code>.</p>
+<section id="neighboring-datasets">
+<h3>Neighboring datasets<a class="headerlink" href="#neighboring-datasets" title="Link to this heading">#</a></h3>
+<p>Two datasets <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span> are neighbors if they differ in at most one record (i.e., one row). Thus, either <span class="math notranslate nohighlight">\(D_1\)</span> has at most one more (or less) row than <span class="math notranslate nohighlight">\(D_2\)</span>, or at most one row in <span class="math notranslate nohighlight">\(D_1\)</span> has values that are different than <span class="math notranslate nohighlight">\(D_2\)</span>. We write <span class="math notranslate nohighlight">\(|D_1 - D_2|\leq 1\)</span></p>
+<a class="reference internal image-reference" href="../../_images/neighbor-datasets.png" id="neighbor-datasets"><img alt="../../_images/neighbor-datasets.png" id="neighbor-datasets" src="../../_images/neighbor-datasets.png" style="height: 150px;" /></a>
+<p>For example, in <a class="reference internal" href="#neighbor-datasets"><span class="std std-ref">figure</span></a>, <span class="math notranslate nohighlight">\(D_2\)</span> can be obtained by deleting one row from <span class="math notranslate nohighlight">\(D_1\)</span> (or <span class="math notranslate nohighlight">\(D_1\)</span> can be obtained by adding one row to <span class="math notranslate nohighlight">\(D_2\)</span>) and thus they are neighbors. <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_3\)</span> has the same number of rows, but the values in (exactly) one row is different, thus they are also neighbors. Note that, you can obtain <span class="math notranslate nohighlight">\(D_3\)</span> by first deleting the last row from <span class="math notranslate nohighlight">\(D_1\)</span> and then adding one row in the resulting dataset; thus, this replacement operation can be thought of as a combination of a deletion and an addition operations (i.e., two operations in total).</p>
+<p>Imagine that you can only query about the average salary of a set of people in that dataset. Can you learn individual’s salary? Yes! By doing some arithmetic manipulations, you can learn <code class="docutils literal notranslate"><span class="pre">P3</span></code>’s salary by querying the average salary from <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span>.</p>
+<p>Similarly, for the health dataset above, we can construct intermediate neighbor datasets to query from and learn about individuals. Let’s say Igor’s record is in the <span class="math notranslate nohighlight">\(9^{th}\)</span> row. Consider the following neighoboring datasets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">health</span><span class="p">[</span><span class="n">health</span><span class="o">.</span><span class="n">Problem</span><span class="o">==</span><span class="s1">&#39;Obesity&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -455,84 +466,155 @@ document.write(`
     <tr style="text-align: right;">
       <th></th>
       <th>Name</th>
-      <th>DOB</th>
       <th>SSN</th>
-      <th>Zip</th>
-      <th>Education</th>
-      <th>Marital Status</th>
-      <th>Occupation</th>
+      <th>Marital status</th>
       <th>Sex</th>
+      <th>DOB</th>
+      <th>Zip</th>
+      <th>Ethnicity</th>
+      <th>Problem</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>Karrie Trusslove</td>
-      <td>9/7/1967</td>
-      <td>732-14-6110</td>
-      <td>64152</td>
-      <td>Bachelors</td>
-      <td>Never-married</td>
-      <td>Adm-clerical</td>
-      <td>Male</td>
-    </tr>
-    <tr>
       <th>1</th>
-      <td>Brandise Tripony</td>
-      <td>6/7/1988</td>
-      <td>150-19-2766</td>
-      <td>61523</td>
-      <td>Bachelors</td>
-      <td>Married-civ-spouse</td>
-      <td>Exec-managerial</td>
-      <td>Male</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Brenn McNeely</td>
-      <td>8/6/1991</td>
-      <td>725-59-9860</td>
-      <td>95668</td>
-      <td>HS-grad</td>
+      <td>--</td>
+      <td>--</td>
       <td>Divorced</td>
-      <td>Handlers-cleaners</td>
-      <td>Male</td>
+      <td>Female</td>
+      <td>1996-06-27</td>
+      <td>2139</td>
+      <td>Asian</td>
+      <td>Obesity</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Dorry Poter</td>
-      <td>4/6/2009</td>
-      <td>659-57-4974</td>
-      <td>25503</td>
-      <td>11th</td>
-      <td>Married-civ-spouse</td>
-      <td>Handlers-cleaners</td>
-      <td>Male</td>
+      <td>--</td>
+      <td>--</td>
+      <td>Married</td>
+      <td>Female</td>
+      <td>1996-09-22</td>
+      <td>2139</td>
+      <td>Asian</td>
+      <td>Obesity</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>Dick Honnan</td>
-      <td>9/16/1951</td>
-      <td>220-93-3811</td>
-      <td>75387</td>
-      <td>Bachelors</td>
-      <td>Married-civ-spouse</td>
-      <td>Prof-specialty</td>
-      <td>Female</td>
+      <th>7</th>
+      <td>--</td>
+      <td>--</td>
+      <td>Married</td>
+      <td>Male</td>
+      <td>1995-07-23</td>
+      <td>2141</td>
+      <td>Black</td>
+      <td>Obesity</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>--</td>
+      <td>--</td>
+      <td>Single</td>
+      <td>Male</td>
+      <td>1995-02-18</td>
+      <td>2138</td>
+      <td>White</td>
+      <td>Obesity</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">health</span><span class="p">[(</span><span class="n">health</span><span class="o">.</span><span class="n">Problem</span><span class="o">==</span><span class="s1">&#39;Obesity&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">health</span><span class="o">.</span><span class="n">Ethnicity</span><span class="o">!=</span><span class="s1">&#39;White&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>SSN</th>
+      <th>Marital status</th>
+      <th>Sex</th>
+      <th>DOB</th>
+      <th>Zip</th>
+      <th>Ethnicity</th>
+      <th>Problem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>--</td>
+      <td>--</td>
+      <td>Divorced</td>
+      <td>Female</td>
+      <td>1996-06-27</td>
+      <td>2139</td>
+      <td>Asian</td>
+      <td>Obesity</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>--</td>
+      <td>--</td>
+      <td>Married</td>
+      <td>Female</td>
+      <td>1996-09-22</td>
+      <td>2139</td>
+      <td>Asian</td>
+      <td>Obesity</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>--</td>
+      <td>--</td>
+      <td>Married</td>
+      <td>Male</td>
+      <td>1995-07-23</td>
+      <td>2141</td>
+      <td>Black</td>
+      <td>Obesity</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Of course these dataset are not observable by the attackers. But they can query, how many people suffer from <code class="docutils literal notranslate"><span class="pre">Obesity</span></code> in total (the first dataset) and people who are not white (remeber that the attacker knows Igor’s race and other information). If the difference is <span class="math notranslate nohighlight">\(1\)</span>, they know that Igor has Obesity! If it is more than <span class="math notranslate nohighlight">\(1\)</span>, they can narrow down the result by adding more parameters (like sex, zip, etc.) The attacker can repeat the same steps with other medical problems, and Igor must have at least one of them.</p>
+<p><strong>How to prevent such differencing attacks?</strong></p>
+<p><strong>Differential Privacy</strong> is the answer. Let’s learn about another concept that is very important to understand differential privacy (DP, henceforth).</p>
 </section>
-<section id="definitions">
-<h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h2>
-<section id="neighboring-datasets">
-<h3>Neighboring datasets<a class="headerlink" href="#neighboring-datasets" title="Link to this heading">#</a></h3>
-<p>Two datasets <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span> are neighbors if they differ in at most one record (i.e., one row). Thus, either <span class="math notranslate nohighlight">\(D_1\)</span> has at most one more (or less) row than <span class="math notranslate nohighlight">\(D_2\)</span>, or at most one row in <span class="math notranslate nohighlight">\(D_1\)</span> has values that are different than <span class="math notranslate nohighlight">\(D_2\)</span>. We write <span class="math notranslate nohighlight">\(|D_1 - D_2|\leq 1\)</span></p>
-<a class="reference internal image-reference" href="chapters/dp/figs/neighbor-datasets.png" id="neighbor-datasets"><img alt="chapters/dp/figs/neighbor-datasets.png" id="neighbor-datasets" src="chapters/dp/figs/neighbor-datasets.png" style="height: 150px;" /></a>
-<p>For example, in <a class="reference internal" href="#neighbor-datasets"><span class="std std-ref">figure</span></a>, <span class="math notranslate nohighlight">\(D_2\)</span> can be obtained by deleting one row from <span class="math notranslate nohighlight">\(D_1\)</span> (or <span class="math notranslate nohighlight">\(D_1\)</span> can be obtained by adding one row to <span class="math notranslate nohighlight">\(D_2\)</span>) and thus they are neighbors. <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_3\)</span> has the same number of rows, but the values in (exactly) one row is different, thus they are also neighbors. Note that, you can obtain <span class="math notranslate nohighlight">\(D_3\)</span> by first deleting the last row from <span class="math notranslate nohighlight">\(D_1\)</span> and then adding one row in the resulting dataset; thus, this replacement operation can be thought of as a combination of a deletion and an addition operations (i.e., two operations in total).</p>
+<section id="sensitivity-of-a-function">
+<h3>Sensitivity of a function<a class="headerlink" href="#sensitivity-of-a-function" title="Link to this heading">#</a></h3>
+<p>A database query is essentially a function: it takes a database, and optionally some parameters, and returns either a dataset or some scalar value. For aggregate query functions, such as <code class="docutils literal notranslate"><span class="pre">COUNT</span></code>, <code class="docutils literal notranslate"><span class="pre">MIN</span></code>, <code class="docutils literal notranslate"><span class="pre">MAX</span></code>, <code class="docutils literal notranslate"><span class="pre">SUM</span></code>, <code class="docutils literal notranslate"><span class="pre">AVG</span></code>, etc., the outcome is a single value. The sensitivify of a function is how much the output value changes when the function is applied to two neighboring datasets. Formally:</p>
+<p>The <span class="math notranslate nohighlight">\(l_1\)</span>-sensitivity of a function <span class="math notranslate nohighlight">\(M\)</span> is: <span class="math notranslate nohighlight">\(\Delta = max_{D_1, D_2 \text{where} |D_1-D_2|\leq 1} |M(D_1) - M(D_2)|\)</span></p>
+<p>E.g., for the function that counts number of people with obesity, the sensitivity is <span class="math notranslate nohighlight">\(1\)</span> (this is true for any count function). Contrarilty, the sensitivity for <code class="docutils literal notranslate"><span class="pre">SUM</span></code> or <code class="docutils literal notranslate"><span class="pre">MAX</span></code> functions can be unbounded! In practice, we can know their limits based on auxiliary information, such as what can be the maximum salary for a position.</p>
 </section>
+</section>
+<section id="intuition-for-differential-privacy">
+<h2>Intuition for Differential Privacy<a class="headerlink" href="#intuition-for-differential-privacy" title="Link to this heading">#</a></h2>
+<p>The problem is that, when you queried “how many people have obesity?”, you get a fixed number in return (which is correct). What if, you get a slighthly different number each time you ask the same question? In other words, the query function can be a randomized function, which first adds a random number to the query result, and then returns that value. Formally, if <span class="math notranslate nohighlight">\(f(D)\)</span> is the function that computes the query on dataset <span class="math notranslate nohighlight">\(D\)</span>, then we have:</p>
+<p><span class="math notranslate nohighlight">\(M(D) = f(D) + \text{some random number}\)</span>.</p>
+<p>Now, you will get different values at different time when you query <span class="math notranslate nohighlight">\(M(D_1)\)</span>, same for <span class="math notranslate nohighlight">\(M(D_2)\)</span>, and you cannot reliably take their difference to learn about individual rows. Problem solved!</p>
+<p>The problem is now how to generate those random numbers? If we arbitrarily add random numbers, they will destroy any utility of the query results (imagine getting <span class="math notranslate nohighlight">\(345\)</span> and <span class="math notranslate nohighlight">\(245573467\)</span> for the same query!). In the other extreme, we can turn <span class="math notranslate nohighlight">\(M\)</span> into a constant function, and return the same value regardless of the query!</p>
+<p>Recall that, our actual purpose is to return values that are “close enough” or “almost indistinguible” for <span class="math notranslate nohighlight">\(M(D_1)\)</span> and <span class="math notranslate nohighlight">\(M(D_2)\)</span>. In other words, by looking at the return value, an attacker should not be able to know whether it came from <span class="math notranslate nohighlight">\(D_1\)</span> or <span class="math notranslate nohighlight">\(D_2\)</span>. That means, more formally, the probability of a return value is roughly the same, regardless of whether <span class="math notranslate nohighlight">\(D_1\)</span> or <span class="math notranslate nohighlight">\(D_2\)</span> was used as the input dataset to the function <span class="math notranslate nohighlight">\(M\)</span>.</p>
 </section>
 <section id="privacy-loss">
 <h2>Privacy Loss<a class="headerlink" href="#privacy-loss" title="Link to this heading">#</a></h2>
@@ -567,7 +649,7 @@ input dataset.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17450
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7161
 </pre></div>
 </div>
 </div>
@@ -589,11 +671,11 @@ Thus we can achieve differential privacy for our example query by using the Lapl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17446
-17454
-17467
-17423
-17474
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7152
+7150
+7161
+7164
+7152
 </pre></div>
 </div>
 </div>
@@ -609,11 +691,11 @@ Thus we can achieve differential privacy for our example query by using the Lapl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17450
-17450
-17449
-17449
-17450
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7160
+7161
+7160
+7161
+7161
 </pre></div>
 </div>
 </div>
@@ -697,11 +779,12 @@ Thus we can achieve differential privacy for our example query by using the Lapl
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attack-model">Attack model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attack-model">Attack model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neighboring-datasets">Neighboring datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivity-of-a-function">Sensitivity of a function</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-for-differential-privacy">Intuition for Differential Privacy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#privacy-loss">Privacy Loss</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-differential-privacy"><span class="math notranslate nohighlight">\(\epsilon-\)</span>Differential Privacy</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bounded-and-unbounded-dp">Bounded and Unbounded DP</a></li>

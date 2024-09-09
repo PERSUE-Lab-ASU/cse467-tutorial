@@ -393,6 +393,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-distribution">1.2.2.1. Gaussian distribution</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential-distribution">1.2.3. Exponential distribution</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">1.3. Entropy</a></li>
@@ -452,15 +453,15 @@ It is measured as the average of squired distances of the values from their mean
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x:</span><span class="si">{}</span><span class="s1">, variance:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x:</span><span class="si">{}</span><span class="s1">, mean: </span><span class="si">{}</span><span class="s1">, variance:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
 <span class="n">y</span><span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">10</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y:</span><span class="si">{}</span><span class="s1">, variance:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y:</span><span class="si">{}</span><span class="s1">, mean: </span><span class="si">{}</span><span class="s1">, variance:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], variance:8.25
-y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], variance:825.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], mean: 5.5, variance:8.25
+y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], mean: 55.0, variance:825.0
 </pre></div>
 </div>
 </div>
@@ -480,7 +481,7 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], variance:825.0
 <li><p><span class="math notranslate nohighlight">\(\sum_1^n P(E_i)= 1\)</span></p></li>
 </ol>
 <p>then, the set <span class="math notranslate nohighlight">\(\{P(E_1), P(E_2), \dots, P(E_n)\}\)</span> is the probability distribution of the event set. I.e., the distribution shows <em>how the total probabiliy of 1 is distributed across the mutually exclusive events</em>.</p>
-<p>We can think of a probability distribution as a function, that maps the possible events to their probabilities. For example, for a fair coin toss, it maps <span class="math notranslate nohighlight">\(\{H, T\}\)</span> to <span class="math notranslate nohighlight">\(\{.5,.5\}\)</span>.</p>
+<p>We can think of a probability distribution function, that maps the possible events to their probabilities. For discrete (continuous) outcomes, it is known as probability mass (density) function.For example, for a fair coin toss, it maps <span class="math notranslate nohighlight">\(\{H, T\}\)</span> to <span class="math notranslate nohighlight">\(\{.5,.5\}\)</span>.</p>
 <p>Like any other function, a probability distribution function, denoted as <span class="math notranslate nohighlight">\(p(X)\)</span> of random varible <span class="math notranslate nohighlight">\(X\)</span> can be plotted.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -522,7 +523,7 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], variance:825.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/7c215d709e9dbdae8ac9c7e25c45862ad26765a4df06ba196d696f4146119610.png" src="../../_images/7c215d709e9dbdae8ac9c7e25c45862ad26765a4df06ba196d696f4146119610.png" />
+<img alt="../../_images/c8ead8a31fb8f153ecd22b9903664b9f0f24b0a22e520cb1565f942d06b14a07.png" src="../../_images/c8ead8a31fb8f153ecd22b9903664b9f0f24b0a22e520cb1565f942d06b14a07.png" />
 </div>
 </div>
 <section id="gaussian-distribution">
@@ -539,7 +540,7 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], variance:825.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/479f1b0ef719001cb77dfbfd98b4ba12347a93e20eae1c3d91562d243f842080.png" src="../../_images/479f1b0ef719001cb77dfbfd98b4ba12347a93e20eae1c3d91562d243f842080.png" />
+<img alt="../../_images/0b907e78ef1ab881633adfc174c0946db057def404f9987d50d6de062aad5468.png" src="../../_images/0b907e78ef1ab881633adfc174c0946db057def404f9987d50d6de062aad5468.png" />
 </div>
 </div>
 <p>Note that, the function has its highest value at <span class="math notranslate nohighlight">\(x=0\)</span>, which means, the value <span class="math notranslate nohighlight">\(0\)</span> has the highest density (or probability) when you sample values from this function. This is no conincidence. Recall that this is the distribution when mean <span class="math notranslate nohighlight">\(\mu=0\)</span>, and for Gaussian functions, mean has the highest probability. Probabilities for different values decrease as you go farther from the point <span class="math notranslate nohighlight">\(0\)</span>, and this decrease is symmetric.</p>
@@ -559,7 +560,7 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], variance:825.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9fa50148fd84250bcfc064d765ada67cc17f8bd17b191eb969edd681c66d3c92.png" src="../../_images/9fa50148fd84250bcfc064d765ada67cc17f8bd17b191eb969edd681c66d3c92.png" />
+<img alt="../../_images/03e0efd5ac178c9883bc5f565394144610bcbfccd7d0c48cac4ec100b007a4e5.png" src="../../_images/03e0efd5ac178c9883bc5f565394144610bcbfccd7d0c48cac4ec100b007a4e5.png" />
 </div>
 </div>
 <p>Thus, the <code class="docutils literal notranslate"><span class="pre">mean</span></code> decides the location of the curve. Also, <code class="docutils literal notranslate"><span class="pre">mean</span></code> is the value you can <ins> expect to get on average when you sample from this function</ins>. What does the <code class="docutils literal notranslate"><span class="pre">SD</span></code> (or variance) do? It decides how narrow or wide the curve will be. Higher <code class="docutils literal notranslate"><span class="pre">SD</span></code> (equivalently, variance) results in a wider curve. What does that mean? Recall that, variance of a random variable indicates how diverse its values are. Thus, if the values of a random variable are sampled from a Gaussian distribution with a larger variance will yield more diverse values than when sampled from a curve with a smaller variance. Can you explain why by looking at the following plot? (hint: think about the variane of two extreme functions: a uniform function vs. a constant function).</p>
@@ -577,11 +578,28 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], variance:825.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f5959d739009d6018d2b9d93f8f94f9f1702b6472a9619729b1ab37948ec6b3a.png" src="../../_images/f5959d739009d6018d2b9d93f8f94f9f1702b6472a9619729b1ab37948ec6b3a.png" />
+<img alt="../../_images/804190f58a6c42ad6c472c1d2e6d8606e1526a69bd9f076987707933fee0a0d6.png" src="../../_images/804190f58a6c42ad6c472c1d2e6d8606e1526a69bd9f076987707933fee0a0d6.png" />
 </div>
 </div>
 <p>Variance is also a measure of “reliability” for mean. It indicates, how accurately the mean or expected value summarizes the whole distribution. Variance of narrower functions are smaller, and so the mean reflects the “average case.” The flatter the function, the unreliable the mean is as a representation of the averge case (again, think about a uniform function vs. a constant function).</p>
 </section>
+</section>
+<section id="exponential-distribution">
+<h3><span class="section-number">1.2.3. </span>Exponential distribution<a class="headerlink" href="#exponential-distribution" title="Link to this heading">#</a></h3>
+<p>This is defined as: <span class="math notranslate nohighlight">\(f(x) = e^{-\lambda x}, \text{if } x\geq0 \text{ else } 0\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">500000</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a7cf1e281f2c5b198bb52384df0ecaa94a3122671027bc651d06ee36981458a8.png" src="../../_images/a7cf1e281f2c5b198bb52384df0ecaa94a3122671027bc651d06ee36981458a8.png" />
+</div>
+</div>
 </section>
 </section>
 <section id="entropy">
@@ -613,29 +631,15 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], variance:825.0
 <img alt="../../_images/26862b49a2f489083ad2512a5d70ed36eec379d790f48d5553009d9ecfdaa293.png" src="../../_images/26862b49a2f489083ad2512a5d70ed36eec379d790f48d5553009d9ecfdaa293.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="err">```</span><span class="p">{</span><span class="n">note</span><span class="p">}</span>
-<span class="n">Random</span> <span class="n">variables</span> <span class="n">following</span> <span class="n">the</span> <span class="n">uniform</span> <span class="n">distribution</span> <span class="n">has</span> <span class="n">the</span> <span class="n">highest</span> <span class="n">entropy</span><span class="o">.</span> 
-<span class="err">```</span>
-
-<span class="n">Let</span><span class="s1">&#39;s consider now that $X$ represents a (fair) dice roll, which also follows a uniform distribution (all outcomes equally likely): $H(X) = - \sum_{i=1}^6 </span><span class="se">\f</span><span class="s1">rac</span><span class="si">{1}{6}</span><span class="s1"> \log_2 </span><span class="se">\f</span><span class="s1">rac</span><span class="si">{1}{6}</span><span class="s1"> </span><span class="se">\a</span><span class="s1">pprox 2.585$.</span>
-<span class="n">This</span> <span class="ow">is</span> <span class="n">even</span> <span class="n">higher</span> <span class="n">than</span> <span class="n">the</span> <span class="n">entropy</span> <span class="n">of</span> <span class="n">a</span> <span class="n">coin</span> <span class="n">toss</span><span class="p">,</span> <span class="n">even</span> <span class="n">though</span> <span class="n">both</span> <span class="n">times</span> <span class="n">we</span> <span class="n">had</span> <span class="n">a</span> <span class="n">uniform</span> <span class="n">distribution</span><span class="err">!</span>
-
-<span class="err">```</span><span class="p">{</span><span class="n">note</span><span class="p">}</span>
-<span class="n">The</span> <span class="n">larger</span> <span class="n">the</span> <span class="n">domain</span> <span class="n">of</span> <span class="n">X</span><span class="p">,</span> <span class="n">the</span> <span class="n">higher</span> <span class="n">the</span> <span class="n">entropy</span><span class="o">.</span>
-<span class="err">```</span>
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Random variables following the uniform distribution has the highest entropy.</p>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]</span>
-    <span class="err">```</span><span class="p">{</span><span class="n">note</span><span class="p">}</span>
-    <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
-</pre></div>
-</div>
-</div>
+<p>Let’s consider now that <span class="math notranslate nohighlight">\(X\)</span> represents a (fair) dice roll, which also follows a uniform distribution (all outcomes equally likely): <span class="math notranslate nohighlight">\(H(X) = - \sum_{i=1}^6 \frac{1}{6} \log_2 \frac{1}{6} \approx 2.585\)</span>.
+This is even higher than the entropy of a coin toss, even though both times we had a uniform distribution!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The larger the domain of X, the higher the entropy.</p>
 </div>
 <hr class="docutils" />
 <p><strong>External resources</strong></p>
@@ -722,6 +726,7 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], variance:825.0
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-distribution">1.2.2.1. Gaussian distribution</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential-distribution">1.2.3. Exponential distribution</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">1.3. Entropy</a></li>
