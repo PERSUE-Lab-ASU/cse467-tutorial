@@ -459,7 +459,7 @@ differentially private releases may be smaller than this, but never larger. Let�
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e31cf585991482fdc2e9e9dc82d87e13f0bc7a2040f3358f0448a452b95223c0.png" src="../../_images/e31cf585991482fdc2e9e9dc82d87e13f0bc7a2040f3358f0448a452b95223c0.png" />
+<img alt="../../_images/19f2b7e5f4aaa4987b16fda45291e01f2d31fbed9e4b4ec91655a3bd6a4872d1.png" src="../../_images/19f2b7e5f4aaa4987b16fda45291e01f2d31fbed9e4b4ec91655a3bd6a4872d1.png" />
 </div>
 </div>
 <p>In the aboge graph, for F1 and F2, we see that the distributions of their outputs look pretty similar. But F3 is narrower than the two, i.e. less variance (and hence less privacy). F3 is also narrower than F_combined, proving the point that actual privacy loss may be lower than the theoretical upper bound.</p>
@@ -574,23 +574,23 @@ in the dataset who achieved a particular educational level</p>
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10501.532030</td>
+      <td>10500.719674</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7290.891715</td>
+      <td>7291.040670</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5353.744094</td>
+      <td>5355.500213</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1721.426781</td>
+      <td>1720.820112</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1384.155557</td>
+      <td>1383.122735</td>
     </tr>
   </tbody>
 </table>
@@ -704,28 +704,28 @@ in the dataset who achieved a particular educational level</p>
   <tbody>
     <tr>
       <th>10th</th>
-      <td>294.766235</td>
-      <td>637.855402</td>
+      <td>295.081672</td>
+      <td>638.316587</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>433.581610</td>
-      <td>743.056771</td>
+      <td>429.684719</td>
+      <td>744.104346</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>145.868844</td>
-      <td>290.464258</td>
+      <td>144.737621</td>
+      <td>289.187261</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>47.303011</td>
-      <td>121.892439</td>
+      <td>49.050927</td>
+      <td>121.733686</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>84.622143</td>
-      <td>248.820412</td>
+      <td>84.019341</td>
+      <td>248.916065</td>
     </tr>
   </tbody>
 </table>
@@ -756,6 +756,16 @@ For example, there can be families whose data is correlated or identical or we m
 multiple entries in the database of a same individual such as multiple hospital records of a
 same patient. Following theorem provides privacy of a group of data.</p>
 <p>The post-processing property means that it’s always safe to perform arbitrary computations on the output of a differentially private mechanism - there’s no danger of reversing the privacy protection the mechanism has provided. In particular, it’s fine to perform post-processing that might reduce the noise or improve the signal in the mechanism’s output (e.g. replacing negative results with zeros, for queries that shouldn’t return negative results). In fact, many sophisticated differentially private algorithms make use of post-processing to reduce noise and improve the accuracy of their results. The other implication of the post-processing property is that differential privacy provides resistance against privacy attacks based on auxiliary information. For example, the function 𝑔 might contain auxiliary information about elements of the dataset, and attempt to perform a linkage attack using this information. The post-processing property says that such an attack is limited in its effectiveness by the privacy parameter <span class="math notranslate nohighlight">\(\epsilon\)</span>, regardless of the auxiliary information contained in <span class="math notranslate nohighlight">\(\bar M\)</span>.</p>
+<div class="tip admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Sequential composition bounds the total privacy cost of releasing multiple results of differentially private mechanisms
+on the same input data.</p></li>
+<li><p>Parallel composition is based on the idea of splitting your dataset into disjoint chunks and running a differentially
+private mechanism on each chunk separately.</p></li>
+<li><p>The post-processing property means that it’s always safe to perform arbitrary computations on the output of a differentially private mechanism.</p></li>
+</ul>
+</div>
 </section>
 </section>
 

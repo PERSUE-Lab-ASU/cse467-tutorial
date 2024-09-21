@@ -853,7 +853,7 @@ document.write(`
 <p>By joining the two data tables based on the common columns (that is, <em>DOB</em>, <em>Sex</em>, and <em>Zip</em>), we can figure out the names (and addresses) of people in the first database, and then we can learn what medical problem each of them had! A pretty severe privacy violation, since one can locate the person with name and address, and know their medical condition!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">health</span><span class="p">,</span> <span class="n">voter</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span>	<span class="s1">&#39;Sex&#39;</span><span class="p">,</span>	<span class="s1">&#39;Zip&#39;</span><span class="p">])[[</span><span class="s1">&#39;Name_y&#39;</span><span class="p">,</span> <span class="s1">&#39;Address&#39;</span><span class="p">,</span> <span class="s1">&#39;Problem&#39;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">health</span><span class="p">,</span> <span class="n">voter</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DOB&#39;</span><span class="p">,</span>	<span class="s1">&#39;Sex&#39;</span><span class="p">,</span>	<span class="s1">&#39;Zip&#39;</span><span class="p">])[[</span><span class="s1">&#39;Name_y&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Marital status&#39;</span><span class="p">,</span> <span class="s1">&#39;Ethnicity&#39;</span><span class="p">,</span> <span class="s1">&#39;Address&#39;</span><span class="p">,</span><span class="s1">&#39;Zip&#39;</span><span class="p">,</span> <span class="s1">&#39;Problem&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -877,7 +877,11 @@ document.write(`
     <tr style="text-align: right;">
       <th></th>
       <th>Name_y</th>
+      <th>Sex</th>
+      <th>Marital status</th>
+      <th>Ethnicity</th>
       <th>Address</th>
+      <th>Zip</th>
       <th>Problem</th>
     </tr>
   </thead>
@@ -885,61 +889,101 @@ document.write(`
     <tr>
       <th>0</th>
       <td>Peter Sparks</td>
+      <td>Male</td>
+      <td>Divorced</td>
+      <td>Asian</td>
       <td>PSC 4583, Box 5237 APO AP 43391</td>
+      <td>2139</td>
       <td>Hypertension</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Lauren Edwards</td>
+      <td>Female</td>
+      <td>Divorced</td>
+      <td>Asian</td>
       <td>0488 Jeffrey Parkways Suite 732 Brianshire, IN...</td>
+      <td>2139</td>
       <td>Obesity</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Angela Gibson</td>
+      <td>Female</td>
+      <td>Married</td>
+      <td>Asian</td>
       <td>31809 Olson Wells Apt. 580 Mullinsshire, TN 22229</td>
+      <td>2139</td>
       <td>Chest pain</td>
     </tr>
     <tr>
       <th>3</th>
       <td>David Davis</td>
+      <td>Male</td>
+      <td>Married</td>
+      <td>Black</td>
       <td>6179 Amber Square Suite 057 North Patriciaton,...</td>
+      <td>2148</td>
       <td>Hypertension</td>
     </tr>
     <tr>
       <th>4</th>
       <td>Rachel Hernandez</td>
+      <td>Male</td>
+      <td>Married</td>
+      <td>Black</td>
       <td>556 Flores Port Apt. 367 West Kylie, DE 02268</td>
+      <td>2138</td>
       <td>Shortness of breath</td>
     </tr>
     <tr>
       <th>5</th>
       <td>Gina Donaldson</td>
+      <td>Female</td>
+      <td>Married</td>
+      <td>Black</td>
       <td>20516 Castro Cliff Parkerside, AK 66539</td>
+      <td>2141</td>
       <td>Shortness of breath</td>
     </tr>
     <tr>
       <th>6</th>
       <td>Crystal Mcconnell</td>
+      <td>Male</td>
+      <td>Married</td>
+      <td>Black</td>
       <td>67874 Matthews Hills\nEatonmouth, IN 54155</td>
+      <td>2141</td>
       <td>Obesity</td>
     </tr>
     <tr>
       <th>7</th>
       <td>Samantha Jackson</td>
+      <td>Female</td>
+      <td>Single</td>
+      <td>White</td>
       <td>42804 Miller Hill\nJohnstad, RI 94607</td>
+      <td>2138</td>
       <td>Chest pain</td>
     </tr>
     <tr>
       <th>8</th>
       <td>Kevin Davis</td>
+      <td>Male</td>
+      <td>Single</td>
+      <td>White</td>
       <td>5480 Mitchell Extensions Apt. 941 Hillbury, CT...</td>
+      <td>2138</td>
       <td>Obesity</td>
     </tr>
     <tr>
       <th>9</th>
       <td>Joana Wood</td>
+      <td>Female</td>
+      <td>Widow</td>
+      <td>White</td>
       <td>8904 Corey Fort Apt. 957 Franklinchester, SC 2...</td>
+      <td>2142</td>
       <td>Shortness of breath</td>
     </tr>
   </tbody>
