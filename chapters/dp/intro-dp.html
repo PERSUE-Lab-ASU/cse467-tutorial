@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Differential Privacy &#8212; Data and Information Privacy</title>
+    <title>6. Differential Privacy &#8212; Data and Information Privacy</title>
   
   
   
@@ -67,9 +67,11 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/dp/0-dp-main';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/dp/intro-dp';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.4. More on Function Sensitivity" href="sensitivity-details.html" />
+    <link rel="prev" title="5. Other anonymization techniques" href="../anonymizations/other-techniques.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -131,8 +133,6 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -180,13 +180,13 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../preli/probability.html">1. Preliminaries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../anonymizations/intro.html">2. Anonymization techniques</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../anonymizations/k-anon.html">3. K-anonymity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../anonymizations/utility.html">4. Data utility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../anonymizations/other-techniques.html">5. Other anonymization techniques</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="intro-dp.html">6. Differential Privacy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">6. Differential Privacy</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="sensitivity-details.html">6.4. More on Function Sensitivity</a></li>
 </ul>
 </li>
@@ -261,7 +261,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/dp/0-dp-main.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/dp/intro-dp.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -291,7 +291,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/chapters/dp/0-dp-main.ipynb" target="_blank"
+      <li><a href="../../_sources/chapters/dp/intro-dp.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -385,17 +385,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attack-model">Attack model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neighboring-datasets">Neighboring datasets</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivity-of-a-function">Sensitivity of a function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attack-model">6.1. Attack model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neighboring-datasets">6.1.1. Neighboring datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivity-of-a-function">6.1.2. Sensitivity of a function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-for-differential-privacy">Intuition for Differential Privacy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-differential-privacy"><span class="math notranslate nohighlight">\(\epsilon-\)</span>Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-for-differential-privacy">6.2. Intuition for Differential Privacy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-differential-privacy">6.2.1. <span class="math notranslate nohighlight">\(\epsilon-\)</span>Differential Privacy</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acheiving-differential-privacy">Acheiving Differential Privacy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-laplace-mechanism">The Laplace mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acheiving-differential-privacy">6.3. Acheiving Differential Privacy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-laplace-mechanism">6.3.1. The Laplace mechanism</a></li>
 </ul>
 </li>
 </ul>
@@ -410,9 +410,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="differential-privacy">
-<h1>Differential Privacy<a class="headerlink" href="#differential-privacy" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">6. </span>Differential Privacy<a class="headerlink" href="#differential-privacy" title="Link to this heading">#</a></h1>
 <section id="attack-model">
-<h2>Attack model<a class="headerlink" href="#attack-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.1. </span>Attack model<a class="headerlink" href="#attack-model" title="Link to this heading">#</a></h2>
 <p>We have studied privacy attacks where attackers learn sensitive information about an individual by linking two (or more) published data sources. What if the datasets are not published? For example, imagine a situation where a hospital dataset is created, as shown below, where anyone can query it to learn aggregated statistics (e.g., “how many people suffer from obesity?”) but the actual dataset is never released.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -436,10 +436,10 @@ document.write(`
 <p>You know that your neighbor Igor goes to the same hospital. You know Igor’s Ethnicity (and obviously, Zip, marital status, and gender!). Assume that the database owner removed any direct identifiers or does not allow quering using them (e.g.,  you cannot ask “what medical problems people have who are named ‘Igor’?” Can you learn, by quering the dataset, and not by directly accessing it, what medical problem Igor is suffering from?</p>
 <p>The answer is, unfortunately, <strong>Yes</strong>, which is why we have this chapter.  Before looking into how, lets learn about the concept of <code class="docutils literal notranslate"><span class="pre">Neighboring</span> <span class="pre">datasets</span></code>.</p>
 <section id="neighboring-datasets">
-<h3>Neighboring datasets<a class="headerlink" href="#neighboring-datasets" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.1.1. </span>Neighboring datasets<a class="headerlink" href="#neighboring-datasets" title="Link to this heading">#</a></h3>
 <p>Two datasets <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span> are neighbors if they differ in at most one record (i.e., one row). Thus, either <span class="math notranslate nohighlight">\(D_1\)</span> has at most one more (or less) row than <span class="math notranslate nohighlight">\(D_2\)</span>, or at most one row in <span class="math notranslate nohighlight">\(D_1\)</span> has values that are different than <span class="math notranslate nohighlight">\(D_2\)</span>. We write <span class="math notranslate nohighlight">\(|D_1 - D_2|\leq 1\)</span></p>
 <a class="reference internal image-reference" href="../../_images/neighbor-datasets.png" id="neighbor-datasets"><img alt="../../_images/neighbor-datasets.png" id="neighbor-datasets" src="../../_images/neighbor-datasets.png" style="height: 150px;" /></a>
-<p>For example, in <a class="reference internal" href="intro-dp.html#neighbor-datasets"><span class="std std-ref">figure</span></a>, <span class="math notranslate nohighlight">\(D_2\)</span> can be obtained by deleting one row from <span class="math notranslate nohighlight">\(D_1\)</span> (or <span class="math notranslate nohighlight">\(D_1\)</span> can be obtained by adding one row to <span class="math notranslate nohighlight">\(D_2\)</span>) and thus they are neighbors. <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_3\)</span> has the same number of rows, but the values in (exactly) one row is different, thus they are also neighbors. Note that, you can obtain <span class="math notranslate nohighlight">\(D_3\)</span> by first deleting the last row from <span class="math notranslate nohighlight">\(D_1\)</span> and then adding one row in the resulting dataset; thus, this replacement operation can be thought of as a combination of a deletion and an addition operations (i.e., two operations in total).</p>
+<p>For example, in <a class="reference internal" href="#neighbor-datasets"><span class="std std-ref">figure</span></a>, <span class="math notranslate nohighlight">\(D_2\)</span> can be obtained by deleting one row from <span class="math notranslate nohighlight">\(D_1\)</span> (or <span class="math notranslate nohighlight">\(D_1\)</span> can be obtained by adding one row to <span class="math notranslate nohighlight">\(D_2\)</span>) and thus they are neighbors. <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_3\)</span> has the same number of rows, but the values in (exactly) one row is different, thus they are also neighbors. Note that, you can obtain <span class="math notranslate nohighlight">\(D_3\)</span> by first deleting the last row from <span class="math notranslate nohighlight">\(D_1\)</span> and then adding one row in the resulting dataset; thus, this replacement operation can be thought of as a combination of a deletion and an addition operations (i.e., two operations in total).</p>
 <p>Imagine that you can only query about the average salary of a set of people in that dataset. Can you learn individual’s salary? Yes! By doing some arithmetic manipulations, you can learn <code class="docutils literal notranslate"><span class="pre">P3</span></code>’s salary by querying the average salary from <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span>.</p>
 <p>Similarly, for the health dataset above, we can construct intermediate neighbor datasets to query from and learn about individuals. Let’s say Igor’s record is in the <span class="math notranslate nohighlight">\(9^{th}\)</span> row. Consider the following neighoboring datasets.</p>
 <div class="cell docutils container">
@@ -604,21 +604,21 @@ document.write(`
 <p><strong>Differential Privacy</strong> is the answer. Let’s learn about another concept that is very important to understand differential privacy (DP, henceforth).</p>
 </section>
 <section id="sensitivity-of-a-function">
-<h3>Sensitivity of a function<a class="headerlink" href="#sensitivity-of-a-function" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.1.2. </span>Sensitivity of a function<a class="headerlink" href="#sensitivity-of-a-function" title="Link to this heading">#</a></h3>
 <p>A database query is essentially a function: it takes a database, and optionally some parameters, and returns either a dataset or some scalar value. For aggregate query functions, such as <code class="docutils literal notranslate"><span class="pre">COUNT</span></code>, <code class="docutils literal notranslate"><span class="pre">MIN</span></code>, <code class="docutils literal notranslate"><span class="pre">MAX</span></code>, <code class="docutils literal notranslate"><span class="pre">SUM</span></code>, <code class="docutils literal notranslate"><span class="pre">AVG</span></code>, etc., the outcome is a single value. The sensitivify of a function is how much the output value changes when the function is applied to two neighboring datasets. Formally:</p>
 <p>The <span class="math notranslate nohighlight">\(l_1\)</span>-sensitivity of a function <span class="math notranslate nohighlight">\(M\)</span> is: <span class="math notranslate nohighlight">\(\Delta = max_{D_1, D_2 \text{where} |D_1-D_2|\leq 1} |M(D_1) - M(D_2)|\)</span></p>
-<p>E.g., for the function that counts number of people with obesity, the sensitivity is <span class="math notranslate nohighlight">\(1\)</span> (this is true for any count function). Contrarilty, the sensitivity for <code class="docutils literal notranslate"><span class="pre">SUM</span></code> or <code class="docutils literal notranslate"><span class="pre">MAX</span></code> functions can be unbounded! In practice, we can know their limits based on auxiliary information, such as what can be the maximum salary for a position. We will learn more about sensitivity of different functions in <a class="reference internal" href="sensitivity-details.html#sensitivity-details-section"><span class="std std-ref">More on Function Sensitivity</span></a>.</p>
+<p>E.g., for the function that counts number of people with obesity, the sensitivity is <span class="math notranslate nohighlight">\(1\)</span> (this is true for any count function). Contrarilty, the sensitivity for <code class="docutils literal notranslate"><span class="pre">SUM</span></code> or <code class="docutils literal notranslate"><span class="pre">MAX</span></code> functions can be unbounded! In practice, we can know their limits based on auxiliary information, such as what can be the maximum salary for a position. We will learn more about sensitivity of different functions in a later <a class="reference internal" href="sensitivity-details.html#sensitivity-details-section"><span class="std std-ref">section</span></a>.</p>
 </section>
 </section>
 <section id="intuition-for-differential-privacy">
-<h2>Intuition for Differential Privacy<a class="headerlink" href="#intuition-for-differential-privacy" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.2. </span>Intuition for Differential Privacy<a class="headerlink" href="#intuition-for-differential-privacy" title="Link to this heading">#</a></h2>
 <p>The problem is that, when you queried “how many people have obesity?”, you get a fixed number in return (which is correct). What if, you get a slighthly different number each time you ask the same question? In other words, the query function can be a randomized function, which first adds a random number to the query result, and then returns that value. Formally, if <span class="math notranslate nohighlight">\(f(D)\)</span> is the function that computes the query on dataset <span class="math notranslate nohighlight">\(D\)</span>, then we have:</p>
 <p><span class="math notranslate nohighlight">\(M(D) = f(D) + \text{some random number}\)</span>.</p>
 <p>Now, you will get different values at different time when you query <span class="math notranslate nohighlight">\(M(D_1)\)</span>, same for <span class="math notranslate nohighlight">\(M(D_2)\)</span>, and you cannot reliably take their difference to learn about individual rows. Problem solved!</p>
 <p>The problem is now how to generate those random numbers? If we arbitrarily add random numbers, they will destroy any utility of the query results (imagine getting <span class="math notranslate nohighlight">\(345\)</span> and <span class="math notranslate nohighlight">\(245573467\)</span> for the same query!). In the other extreme, we can turn <span class="math notranslate nohighlight">\(M\)</span> into a constant function, and return the same value regardless of the query!</p>
 <p>Recall that, our actual purpose is to return values that are “close enough” or “almost indistinguible” for <span class="math notranslate nohighlight">\(M(D_1)\)</span> and <span class="math notranslate nohighlight">\(M(D_2)\)</span>. In other words, by looking at the return value, an attacker should not be able to know whether it came from <span class="math notranslate nohighlight">\(D_1\)</span> or <span class="math notranslate nohighlight">\(D_2\)</span>. That means, more formally, the probability of a return value is roughly the same, regardless of whether <span class="math notranslate nohighlight">\(D_1\)</span> or <span class="math notranslate nohighlight">\(D_2\)</span> was used as the input dataset to the function <span class="math notranslate nohighlight">\(M\)</span>.</p>
 <section id="epsilon-differential-privacy">
-<h3><span class="math notranslate nohighlight">\(\epsilon-\)</span>Differential Privacy<a class="headerlink" href="#epsilon-differential-privacy" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.1. </span><span class="math notranslate nohighlight">\(\epsilon-\)</span>Differential Privacy<a class="headerlink" href="#epsilon-differential-privacy" title="Link to this heading">#</a></h3>
 <p>A <em>randomized</em> mechanism (or algorithm) <span class="math notranslate nohighlight">\(M\)</span> satisfies <span class="math notranslate nohighlight">\(\epsilon\)</span>-differential privacy if and only if for any two neighboring datasets <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span>, the following condition is satisfied</p>
 <p><span class="math notranslate nohighlight">\(\forall S \in Range(M): P(M(D_1) \in S) \leq e^{\epsilon} P(M(D_2) \in S)\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(\epsilon \leq 0\)</span> and <span class="math notranslate nohighlight">\(Range(M)\)</span> denotes the set of all possible outputs of the algorithm <span class="math notranslate nohighlight">\(M\)</span>.</p>
@@ -627,15 +627,21 @@ document.write(`
 <p>where  <span class="math notranslate nohighlight">\(\frac{0}{0}=1\)</span></p>
 <p>The important implication of this definition is that <span class="math notranslate nohighlight">\(M\)</span>’s output will be pretty much the same, with or without the data of any specific individual. That means, since <span class="math notranslate nohighlight">\(M\)</span> is randomized, the built-in randomness is “enough” to prevent someone from guessing, after seeing the output, which dataset was used to compute that output. Imagine that, if your data is present in <span class="math notranslate nohighlight">\(D_1\)</span> but not in <span class="math notranslate nohighlight">\(D_2\)</span>, an adversary won’t be able to tell whether or not your data was present in the
 input dataset.</p>
-<p><strong>Note:</strong> The mechanism <span class="math notranslate nohighlight">\(M\)</span> is differentially private (if it satisfies the above condition), not the datasets.</p>
-<p><strong>Note:</strong> The parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> dictates how much privacy you get: smaller values mean that when algorithm <span class="math notranslate nohighlight">\(M\)</span> is applied on <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span>, the outcomes are similar (i.e., more privacy) than larger values.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The mechanism <span class="math notranslate nohighlight">\(M\)</span> is differentially private (if it satisfies the above condition), not the datasets.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> dictates how much privacy you get: smaller values mean that when algorithm <span class="math notranslate nohighlight">\(M\)</span> is applied on <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span>, the outcomes are similar (i.e., more privacy) than larger values.</p>
+</div>
 </section>
 </section>
 <section id="acheiving-differential-privacy">
-<h2>Acheiving Differential Privacy<a class="headerlink" href="#acheiving-differential-privacy" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.3. </span>Acheiving Differential Privacy<a class="headerlink" href="#acheiving-differential-privacy" title="Link to this heading">#</a></h2>
 <p>Recall that the goal is to make an algorithm differentially private, i.e., the algorithm gives <em>similar</em> outputs for neighboring datastets. How do we acheive this? The most popular mechanism is to add noise to the outcomes, so that they become similar enough. There are multiple ways to select the noise, we will explore some of them below.</p>
 <section id="the-laplace-mechanism">
-<h3>The Laplace mechanism<a class="headerlink" href="#the-laplace-mechanism" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.1. </span>The Laplace mechanism<a class="headerlink" href="#the-laplace-mechanism" title="Link to this heading">#</a></h3>
 <p>Let’s consider a query on the census data: “How many individuals in the dataset are 40 years old or older?”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -726,6 +732,8 @@ Thus we can achieve differential privacy for our example query by using the Lapl
 </div>
 </section>
 </section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -758,6 +766,24 @@ Thus we can achieve differential privacy for our example query by using the Lapl
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../anonymizations/other-techniques.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Other anonymization techniques</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="sensitivity-details.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6.4. </span>More on Function Sensitivity</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -774,17 +800,17 @@ Thus we can achieve differential privacy for our example query by using the Lapl
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attack-model">Attack model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neighboring-datasets">Neighboring datasets</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivity-of-a-function">Sensitivity of a function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attack-model">6.1. Attack model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neighboring-datasets">6.1.1. Neighboring datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivity-of-a-function">6.1.2. Sensitivity of a function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-for-differential-privacy">Intuition for Differential Privacy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-differential-privacy"><span class="math notranslate nohighlight">\(\epsilon-\)</span>Differential Privacy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-for-differential-privacy">6.2. Intuition for Differential Privacy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-differential-privacy">6.2.1. <span class="math notranslate nohighlight">\(\epsilon-\)</span>Differential Privacy</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acheiving-differential-privacy">Acheiving Differential Privacy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-laplace-mechanism">The Laplace mechanism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acheiving-differential-privacy">6.3. Acheiving Differential Privacy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-laplace-mechanism">6.3.1. The Laplace mechanism</a></li>
 </ul>
 </li>
 </ul>

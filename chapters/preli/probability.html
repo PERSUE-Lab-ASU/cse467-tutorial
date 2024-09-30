@@ -186,6 +186,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../anonymizations/k-anon.html">3. K-anonymity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../anonymizations/utility.html">4. Data utility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../anonymizations/other-techniques.html">5. Other anonymization techniques</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dp/intro-dp.html">6. Differential Privacy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dp/sensitivity-details.html">6.4. More on Function Sensitivity</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -523,7 +527,7 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], mean: 55.0, variance:825.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8ffdb0bcde96287bdd507e03a653ba13c6b6e8c31084af66da012e96115c0a61.png" src="../../_images/8ffdb0bcde96287bdd507e03a653ba13c6b6e8c31084af66da012e96115c0a61.png" />
+<img alt="../../_images/9c5346992de9db90172eab9ca4d962287567155923c5499e6fad05c3bc39e9eb.png" src="../../_images/9c5346992de9db90172eab9ca4d962287567155923c5499e6fad05c3bc39e9eb.png" />
 </div>
 </div>
 <section id="gaussian-distribution">
@@ -540,7 +544,7 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], mean: 55.0, variance:825.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/5857622a53aad6e4a3e763a407ec11f6c3893f28e88cf52501192cc5e08916ca.png" src="../../_images/5857622a53aad6e4a3e763a407ec11f6c3893f28e88cf52501192cc5e08916ca.png" />
+<img alt="../../_images/c1b795da9c50c76874aff1df357ec24d136425b79e96bf2337349bf5dd6c99a9.png" src="../../_images/c1b795da9c50c76874aff1df357ec24d136425b79e96bf2337349bf5dd6c99a9.png" />
 </div>
 </div>
 <p>Note that, the function has its highest value at <span class="math notranslate nohighlight">\(x=0\)</span>, which means, the value <span class="math notranslate nohighlight">\(0\)</span> has the highest density (or probability) when you sample values from this function. This is no conincidence. Recall that this is the distribution when mean <span class="math notranslate nohighlight">\(\mu=0\)</span>, and for Gaussian functions, mean has the highest probability. Probabilities for different values decrease as you go farther from the point <span class="math notranslate nohighlight">\(0\)</span>, and this decrease is symmetric.</p>
@@ -560,7 +564,7 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], mean: 55.0, variance:825.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e883b9792b07395409204781e220af6553a3e4faa99fd5ac45875085605fdd6f.png" src="../../_images/e883b9792b07395409204781e220af6553a3e4faa99fd5ac45875085605fdd6f.png" />
+<img alt="../../_images/bffee282c86a91fae4268f939091ddcab40669f5efaa1b2e73f7ff7d7b7f4229.png" src="../../_images/bffee282c86a91fae4268f939091ddcab40669f5efaa1b2e73f7ff7d7b7f4229.png" />
 </div>
 </div>
 <p>Thus, the <code class="docutils literal notranslate"><span class="pre">mean</span></code> decides the location of the curve. Also, <code class="docutils literal notranslate"><span class="pre">mean</span></code> is the value you can <ins> expect to get on average when you sample from this function</ins>. What does the <code class="docutils literal notranslate"><span class="pre">SD</span></code> (or variance) do? It decides how narrow or wide the curve will be. Higher <code class="docutils literal notranslate"><span class="pre">SD</span></code> (equivalently, variance) results in a wider curve. What does that mean? Recall that, variance of a random variable indicates how diverse its values are. Thus, if the values of a random variable are sampled from a Gaussian distribution with a larger variance will yield more diverse values than when sampled from a curve with a smaller variance. Can you explain why by looking at the following plot? (hint: think about the variane of two extreme functions: a uniform function vs. a constant function).</p>
@@ -578,7 +582,7 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], mean: 55.0, variance:825.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6ee8508ceed206b2434c07571f539e3c3f7cf24e1a0cbd064077d17324872cfc.png" src="../../_images/6ee8508ceed206b2434c07571f539e3c3f7cf24e1a0cbd064077d17324872cfc.png" />
+<img alt="../../_images/ebfad6bfe3b5ff16346c918400fb1069dc5aef3a8ca093baac4c0cf900c30322.png" src="../../_images/ebfad6bfe3b5ff16346c918400fb1069dc5aef3a8ca093baac4c0cf900c30322.png" />
 </div>
 </div>
 <p>Variance is also a measure of “reliability” for mean. It indicates, how accurately the mean or expected value summarizes the whole distribution. Variance of narrower functions are smaller, and so the mean reflects the “average case.” The flatter the function, the unreliable the mean is as a representation of the averge case (again, think about a uniform function vs. a constant function).</p>
@@ -597,7 +601,7 @@ y:[10, 20, 30, 40, 50, 60, 70, 80, 90, 100], mean: 55.0, variance:825.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f2547b321a05a0cb2fba7cf2c1e3e2e7f27d0a653e9c64761ea07e9d165a3630.png" src="../../_images/f2547b321a05a0cb2fba7cf2c1e3e2e7f27d0a653e9c64761ea07e9d165a3630.png" />
+<img alt="../../_images/43c3f5d8af453b1457730711aaf2d5fa3dc5ff9878078ae4c28b4ede7cfbb164.png" src="../../_images/43c3f5d8af453b1457730711aaf2d5fa3dc5ff9878078ae4c28b4ede7cfbb164.png" />
 </div>
 </div>
 </section>

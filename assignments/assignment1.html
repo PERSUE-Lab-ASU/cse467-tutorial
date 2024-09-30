@@ -184,6 +184,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../chapters/anonymizations/k-anon.html">3. K-anonymity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chapters/anonymizations/utility.html">4. Data utility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chapters/anonymizations/other-techniques.html">5. Other anonymization techniques</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapters/dp/intro-dp.html">6. Differential Privacy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/dp/sensitivity-details.html">6.4. More on Function Sensitivity</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -406,21 +410,6 @@ document.write(`
 <span class="sd">NOTE: replace 123 with your ASU ID</span>
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  
-<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="sd"> NOTE: replace 123 with your ASU ID</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd"> &#39;&#39;&#39;</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -430,47 +419,352 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;dataset.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="c1">## original dataset</span>
 <span class="n">anon_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;anon-dataset.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>  <span class="c1">## anonymized dataset</span>
 
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">idx</span><span class="p">)]</span>
 <span class="n">anon_df</span><span class="o">=</span><span class="n">anon_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((13657, 6), (13657, 6))
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>age</th>
+      <th>education</th>
+      <th>marital status</th>
+      <th>gender</th>
+      <th>salary</th>
+      <th>race</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12287</th>
+      <td>14648</td>
+      <td>42</td>
+      <td>HS-grad</td>
+      <td>Widowed</td>
+      <td>Male</td>
+      <td>&gt;50k</td>
+      <td>White</td>
+    </tr>
+    <tr>
+      <th>6165</th>
+      <td>7336</td>
+      <td>37</td>
+      <td>HS-grad</td>
+      <td>Divorced</td>
+      <td>Female</td>
+      <td>&lt;=50k</td>
+      <td>White</td>
+    </tr>
+    <tr>
+      <th>13161</th>
+      <td>15689</td>
+      <td>41</td>
+      <td>Bachelors</td>
+      <td>Married-civ-spouse</td>
+      <td>Female</td>
+      <td>&gt;50k</td>
+      <td>White</td>
+    </tr>
+    <tr>
+      <th>433</th>
+      <td>523</td>
+      <td>22</td>
+      <td>Some-college</td>
+      <td>Never-married</td>
+      <td>Male</td>
+      <td>&lt;=50k</td>
+      <td>White</td>
+    </tr>
+    <tr>
+      <th>1069</th>
+      <td>1264</td>
+      <td>39</td>
+      <td>HS-grad</td>
+      <td>Never-married</td>
+      <td>Female</td>
+      <td>&lt;=50k</td>
+      <td>White</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>12509</th>
+      <td>14905</td>
+      <td>53</td>
+      <td>Assoc-voc</td>
+      <td>Divorced</td>
+      <td>Male</td>
+      <td>&lt;=50k</td>
+      <td>Amer-Indian-Eskimo</td>
+    </tr>
+    <tr>
+      <th>5709</th>
+      <td>6811</td>
+      <td>30</td>
+      <td>Some-college</td>
+      <td>Married-civ-spouse</td>
+      <td>Male</td>
+      <td>&lt;=50k</td>
+      <td>White</td>
+    </tr>
+    <tr>
+      <th>6668</th>
+      <td>7945</td>
+      <td>50</td>
+      <td>HS-grad</td>
+      <td>Separated</td>
+      <td>Female</td>
+      <td>&lt;=50k</td>
+      <td>Amer-Indian-Eskimo</td>
+    </tr>
+    <tr>
+      <th>7944</th>
+      <td>9464</td>
+      <td>32</td>
+      <td>Bachelors</td>
+      <td>Married-civ-spouse</td>
+      <td>Male</td>
+      <td>&gt;50k</td>
+      <td>White</td>
+    </tr>
+    <tr>
+      <th>7185</th>
+      <td>8551</td>
+      <td>21</td>
+      <td>9th</td>
+      <td>Never-married</td>
+      <td>Male</td>
+      <td>&lt;=50k</td>
+      <td>White</td>
+    </tr>
+  </tbody>
+</table>
+<p>10000 rows × 7 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anon_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>age</th>
+      <th>education</th>
+      <th>marriage</th>
+      <th>gender</th>
+      <th>salary</th>
+      <th>race</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12287</th>
+      <td>14648</td>
+      <td>[40-50]</td>
+      <td>Ugrad</td>
+      <td>Once-married</td>
+      <td>--</td>
+      <td>&gt;50k</td>
+      <td>Race1</td>
+    </tr>
+    <tr>
+      <th>6165</th>
+      <td>7336</td>
+      <td>[30-40]</td>
+      <td>Ugrad</td>
+      <td>Once-married</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race1</td>
+    </tr>
+    <tr>
+      <th>13161</th>
+      <td>15689</td>
+      <td>[40-50]</td>
+      <td>Grad</td>
+      <td>Once-married</td>
+      <td>--</td>
+      <td>&gt;50k</td>
+      <td>Race1</td>
+    </tr>
+    <tr>
+      <th>433</th>
+      <td>523</td>
+      <td>[20-30]</td>
+      <td>Ugrad</td>
+      <td>Never-married</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race1</td>
+    </tr>
+    <tr>
+      <th>1069</th>
+      <td>1264</td>
+      <td>[30-40]</td>
+      <td>Ugrad</td>
+      <td>Never-married</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>12509</th>
+      <td>14905</td>
+      <td>[50-60]</td>
+      <td>Ugrad</td>
+      <td>Once-married</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race2</td>
+    </tr>
+    <tr>
+      <th>5709</th>
+      <td>6811</td>
+      <td>[30-40]</td>
+      <td>Ugrad</td>
+      <td>Once-married</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race1</td>
+    </tr>
+    <tr>
+      <th>6668</th>
+      <td>7945</td>
+      <td>[50-60]</td>
+      <td>Ugrad</td>
+      <td>Once-married</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race2</td>
+    </tr>
+    <tr>
+      <th>7944</th>
+      <td>9464</td>
+      <td>[30-40]</td>
+      <td>Grad</td>
+      <td>Once-married</td>
+      <td>--</td>
+      <td>&gt;50k</td>
+      <td>Race1</td>
+    </tr>
+    <tr>
+      <th>7185</th>
+      <td>8551</td>
+      <td>[20-30]</td>
+      <td>Ugrad</td>
+      <td>Never-married</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race1</td>
+    </tr>
+  </tbody>
+</table>
+<p>10000 rows × 7 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;prepare dataset&#39;&#39;&#39;</span>
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;adult_dataset.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="c1">## original dataset</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(16281, 8)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Int64Index([  673,  5758,   418, 11241, 12931, 10314,  4307,  6923,  5685,
-             9194,
-            ...
-              393, 12229,  8604,   427,  2981,  4722,  3898,  1368, 10188,
-             6277],
-           dtype=&#39;int64&#39;, length=10000)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;id&#39;, &#39;age&#39;, &#39;education&#39;, &#39;marital status&#39;, &#39;occupation&#39;, &#39;race&#39;,
+       &#39;gender&#39;, &#39;salary&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anon_df</span><span class="o">.</span><span class="n">index</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">age</span><span class="o">&gt;</span><span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">age</span><span class="o">&lt;</span><span class="mi">60</span><span class="p">)]</span>
+<span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;age&#39;</span><span class="p">,</span><span class="s1">&#39;education&#39;</span><span class="p">,</span><span class="s1">&#39;marital status&#39;</span><span class="p">,</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span><span class="s1">&#39;salary&#39;</span><span class="p">,</span><span class="s1">&#39;race&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;dataset.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Int64Index([  673,  5758,   418, 11241, 12931, 10314,  4307,  6923,  5685,
-             9194,
-            ...
-              393, 12229,  8604,   427,  2981,  4722,  3898,  1368, 10188,
-             6277],
-           dtype=&#39;int64&#39;, length=10000)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(13657, 7)
 </pre></div>
 </div>
 </div>
@@ -478,10 +772,10 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generalize</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;age-group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="s1">&#39;[</span><span class="si">{}</span><span class="s1">-</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">age</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="s1">&#39;[</span><span class="si">{}</span><span class="s1">-</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">age</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span>
                                                             <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">age</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;education-group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> 
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;education&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> 
                     <span class="s1">&#39;Grad&#39;</span> <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">education</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39; Masters&#39;</span><span class="p">,</span> <span class="s1">&#39; Bachelors&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;Ugrad&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;marriage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> 
                     <span class="s1">&#39;Never-married&#39;</span> <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;marital status&#39;</span><span class="p">]</span><span class="o">==</span> <span class="s1">&#39; Never-married&#39;</span> <span class="k">else</span> <span class="s1">&#39;Once-married&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -516,12 +810,9 @@ document.write(`
       <th>age</th>
       <th>education</th>
       <th>marital status</th>
-      <th>occupation</th>
-      <th>race</th>
       <th>gender</th>
       <th>salary</th>
-      <th>age-group</th>
-      <th>education-group</th>
+      <th>race</th>
       <th>marriage</th>
     </tr>
   </thead>
@@ -529,78 +820,60 @@ document.write(`
     <tr>
       <th>0</th>
       <td>0</td>
-      <td>25</td>
-      <td>11th</td>
-      <td>Never-married</td>
-      <td>Machine-op-inspct</td>
-      <td>Race2</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
       <td>[20-30]</td>
       <td>Ugrad</td>
+      <td>Never-married</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race2</td>
       <td>Never-married</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1</td>
-      <td>38</td>
-      <td>HS-grad</td>
-      <td>Married-civ-spouse</td>
-      <td>Farming-fishing</td>
-      <td>Race1</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
       <td>[30-40]</td>
       <td>Ugrad</td>
+      <td>Married-civ-spouse</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race1</td>
       <td>Once-married</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2</td>
-      <td>28</td>
-      <td>Assoc-acdm</td>
-      <td>Married-civ-spouse</td>
-      <td>Protective-serv</td>
-      <td>Race1</td>
-      <td>--</td>
-      <td>&gt;50k</td>
       <td>[20-30]</td>
       <td>Ugrad</td>
+      <td>Married-civ-spouse</td>
+      <td>--</td>
+      <td>&gt;50k</td>
+      <td>Race1</td>
       <td>Once-married</td>
     </tr>
     <tr>
       <th>3</th>
       <td>3</td>
-      <td>44</td>
-      <td>Some-college</td>
-      <td>Married-civ-spouse</td>
-      <td>Machine-op-inspct</td>
-      <td>Race2</td>
-      <td>--</td>
-      <td>&gt;50k</td>
       <td>[40-50]</td>
       <td>Ugrad</td>
+      <td>Married-civ-spouse</td>
+      <td>--</td>
+      <td>&gt;50k</td>
+      <td>Race2</td>
       <td>Once-married</td>
     </tr>
     <tr>
       <th>5</th>
       <td>5</td>
-      <td>34</td>
-      <td>10th</td>
-      <td>Never-married</td>
-      <td>Other-service</td>
-      <td>Race1</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
       <td>[30-40]</td>
       <td>Ugrad</td>
+      <td>Never-married</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race1</td>
       <td>Never-married</td>
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -613,236 +886,74 @@ document.write(`
     <tr>
       <th>16275</th>
       <td>16275</td>
-      <td>33</td>
-      <td>Bachelors</td>
-      <td>Never-married</td>
-      <td>Prof-specialty</td>
-      <td>Race1</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
       <td>[30-40]</td>
       <td>Grad</td>
+      <td>Never-married</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race1</td>
       <td>Never-married</td>
     </tr>
     <tr>
       <th>16276</th>
       <td>16276</td>
-      <td>39</td>
-      <td>Bachelors</td>
-      <td>Divorced</td>
-      <td>Prof-specialty</td>
-      <td>Race1</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
       <td>[30-40]</td>
       <td>Grad</td>
+      <td>Divorced</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race1</td>
       <td>Once-married</td>
     </tr>
     <tr>
       <th>16278</th>
       <td>16278</td>
-      <td>38</td>
-      <td>Bachelors</td>
-      <td>Married-civ-spouse</td>
-      <td>Prof-specialty</td>
-      <td>Race1</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
       <td>[30-40]</td>
       <td>Grad</td>
+      <td>Married-civ-spouse</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race1</td>
       <td>Once-married</td>
     </tr>
     <tr>
       <th>16279</th>
       <td>16279</td>
-      <td>44</td>
-      <td>Bachelors</td>
-      <td>Divorced</td>
-      <td>Adm-clerical</td>
-      <td>Race2</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
       <td>[40-50]</td>
       <td>Grad</td>
+      <td>Divorced</td>
+      <td>--</td>
+      <td>&lt;=50k</td>
+      <td>Race2</td>
       <td>Once-married</td>
     </tr>
     <tr>
       <th>16280</th>
       <td>16280</td>
-      <td>35</td>
-      <td>Bachelors</td>
+      <td>[30-40]</td>
+      <td>Grad</td>
       <td>Married-civ-spouse</td>
-      <td>Exec-managerial</td>
+      <td>--</td>
+      <td>&gt;50k</td>
       <td>Race1</td>
-      <td>--</td>
-      <td>&gt;50k</td>
-      <td>[30-40]</td>
-      <td>Grad</td>
       <td>Once-married</td>
     </tr>
   </tbody>
 </table>
-<p>13657 rows × 11 columns</p>
+<p>13657 rows × 8 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfg</span><span class="o">=</span><span class="n">dfg</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;age-group&#39;</span><span class="p">,</span><span class="s1">&#39;education-group&#39;</span><span class="p">,</span><span class="s1">&#39;marriage&#39;</span><span class="p">,</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span><span class="s1">&#39;salary&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dfg=pd.read_csv(&#39;anon-dataset.csv&#39;)</span>
-<span class="n">dfg</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>age-group</th>
-      <th>education-group</th>
-      <th>marriage</th>
-      <th>gender</th>
-      <th>salary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>[20-30]</td>
-      <td>Ugrad</td>
-      <td>Never-married</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>[30-40]</td>
-      <td>Ugrad</td>
-      <td>Once-married</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>[20-30]</td>
-      <td>Ugrad</td>
-      <td>Once-married</td>
-      <td>--</td>
-      <td>&gt;50k</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>3</td>
-      <td>[40-50]</td>
-      <td>Ugrad</td>
-      <td>Once-married</td>
-      <td>--</td>
-      <td>&gt;50k</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>[30-40]</td>
-      <td>Ugrad</td>
-      <td>Never-married</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>13652</th>
-      <td>16275</td>
-      <td>[30-40]</td>
-      <td>Grad</td>
-      <td>Never-married</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
-    </tr>
-    <tr>
-      <th>13653</th>
-      <td>16276</td>
-      <td>[30-40]</td>
-      <td>Grad</td>
-      <td>Once-married</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
-    </tr>
-    <tr>
-      <th>13654</th>
-      <td>16278</td>
-      <td>[30-40]</td>
-      <td>Grad</td>
-      <td>Once-married</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
-    </tr>
-    <tr>
-      <th>13655</th>
-      <td>16279</td>
-      <td>[40-50]</td>
-      <td>Grad</td>
-      <td>Once-married</td>
-      <td>--</td>
-      <td>&lt;=50k</td>
-    </tr>
-    <tr>
-      <th>13656</th>
-      <td>16280</td>
-      <td>[30-40]</td>
-      <td>Grad</td>
-      <td>Once-married</td>
-      <td>--</td>
-      <td>&gt;50k</td>
-    </tr>
-  </tbody>
-</table>
-<p>13657 rows × 6 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;age-group&#39;</span><span class="p">,</span><span class="s1">&#39;education-group&#39;</span><span class="p">,</span><span class="s1">&#39;marriage&#39;</span><span class="p">,</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span><span class="s1">&#39;salary&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfg</span><span class="o">=</span><span class="n">dfg</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;age&#39;</span><span class="p">,</span><span class="s1">&#39;education&#39;</span><span class="p">,</span><span class="s1">&#39;marriage&#39;</span><span class="p">,</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span><span class="s1">&#39;salary&#39;</span><span class="p">,</span><span class="s1">&#39;race&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">dfg</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;anon-dataset.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;dataset.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span> <span class="c1">#replace 123 with your ASU ID</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df=df.sample(10000, random_state=123) #replace 123 with your ASU ID</span>
 </pre></div>
 </div>
 </div>

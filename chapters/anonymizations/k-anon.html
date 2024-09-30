@@ -186,6 +186,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">3. K-anonymity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utility.html">4. Data utility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="other-techniques.html">5. Other anonymization techniques</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dp/intro-dp.html">6. Differential Privacy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dp/sensitivity-details.html">6.4. More on Function Sensitivity</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -1145,7 +1149,7 @@ A sensitive attribute is an attribute whose value for any particular individual 
 <li><p>Each domain <span class="math notranslate nohighlight">\(D_i\)</span> has at most one direct generalized domain. Mathematically, <span class="math notranslate nohighlight">\(\forall D_i, D_j , D_z \in D : D_i \leq_D Dj , D_i \leq_D D_z \implies D_j \leq_D D_z \vee D_z \leq_D D_j\)</span></p></li>
 <li><p>The highest level of domain (<span class="math notranslate nohighlight">\(D_n\)</span>) is a singleton set. Thus, for each domain <span class="math notranslate nohighlight">\(D\)</span>, there is a hierarchy of generalization, termed as <em>Domain Generalization Hierarchy</em> or <span class="math notranslate nohighlight">\(DGH_D\)</span>. There exists also a <em>Value Generalization Hierarchy</em> or <span class="math notranslate nohighlight">\(VGH_D\)</span> for domain <span class="math notranslate nohighlight">\(D\)</span> that specifies how to replace a specific value with a generic value.</p></li>
 </ol>
-<p>The following <a class="reference internal" href="#dgh-fig"><span class="std std-ref">Figure</span></a> shows examples of <span class="math notranslate nohighlight">\(DGH_D\)</span> and <span class="math notranslate nohighlight">\(VGH_D\)</span> (taken from <span id="id2">[<a class="reference internal" href="../dp/0-dp-main.html#id914">SS98</a>]</span>).</p>
+<p>The following <a class="reference internal" href="#dgh-fig"><span class="std std-ref">Figure</span></a> shows examples of <span class="math notranslate nohighlight">\(DGH_D\)</span> and <span class="math notranslate nohighlight">\(VGH_D\)</span> (taken from <span id="id2">[<a class="reference internal" href="../dp/intro-dp.html#id914">SS98</a>]</span>).</p>
 <figure class="align-default" id="dgh-fig">
 <a class="reference internal image-reference" href="../../_images/dgh.png"><img alt="../../_images/dgh.png" src="../../_images/dgh.png" style="height: 400px;" /></a>
 <figcaption>
