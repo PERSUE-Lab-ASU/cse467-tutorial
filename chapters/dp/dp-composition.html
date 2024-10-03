@@ -70,6 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/dp/dp-composition';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.6. Local differential privacy" href="local-dp.html" />
     <link rel="prev" title="6.4. More on Function Sensitivity" href="sensitivity-details.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -188,6 +189,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro-dp.html">6. Differential Privacy</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="sensitivity-details.html">6.4. More on Function Sensitivity</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">6.5. Composition properties of DP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local-dp.html">6.6. Local differential privacy</a></li>
 </ul>
 </li>
 </ul>
@@ -445,7 +447,7 @@ differentially private releases may be smaller than this, but never larger. Letâ
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">epsilon_total</span><span class="p">)</span>
 <span class="c1"># satisfies 2-differential privacy, by sequential composition</span>
 <span class="k">def</span> <span class="nf">F_combined</span><span class="p">():</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">F1</span><span class="p">()</span> <span class="o">+</span> <span class="n">F2</span><span class="p">())</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">F1</span><span class="p">()</span> <span class="o">+</span> <span class="n">F2</span><span class="p">())</span><span class="o">/</span><span class="mi">2</span>
 
 <span class="n">f1_vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">F1</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span>
 <span class="n">f2_vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">F2</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span>
@@ -463,7 +465,7 @@ differentially private releases may be smaller than this, but never larger. Letâ
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/386c2f104bb37246f55a0308e89066f28e17ad19785f5a41954b4b984b0c9a70.png" src="../../_images/386c2f104bb37246f55a0308e89066f28e17ad19785f5a41954b4b984b0c9a70.png" />
+<img alt="../../_images/a9514c317dc00a6bd638124d611dc4ccc60fd818c379d306561e649ed0fdf368.png" src="../../_images/a9514c317dc00a6bd638124d611dc4ccc60fd818c379d306561e649ed0fdf368.png" />
 </div>
 </div>
 <p>In the aboge graph, for F1 and F2, we see that the distributions of their outputs look pretty similar. But F3 is narrower than the two, i.e. less variance (and hence less privacy). F3 is also narrower than F_combined, proving the point that actual privacy loss may be lower than the theoretical upper bound.</p>
@@ -578,23 +580,23 @@ in the dataset who achieved a particular educational level</p>
   <tbody>
     <tr>
       <th>HS-grad</th>
-      <td>10500.390789</td>
+      <td>10499.722155</td>
     </tr>
     <tr>
       <th>Some-college</th>
-      <td>7291.664645</td>
+      <td>7289.890419</td>
     </tr>
     <tr>
       <th>Bachelors</th>
-      <td>5353.973886</td>
+      <td>5356.618677</td>
     </tr>
     <tr>
       <th>Masters</th>
-      <td>1722.660092</td>
+      <td>1723.645211</td>
     </tr>
     <tr>
       <th>Assoc-voc</th>
-      <td>1381.759074</td>
+      <td>1381.489743</td>
     </tr>
   </tbody>
 </table>
@@ -708,28 +710,28 @@ in the dataset who achieved a particular educational level</p>
   <tbody>
     <tr>
       <th>10th</th>
-      <td>295.177693</td>
-      <td>638.706621</td>
+      <td>295.809992</td>
+      <td>640.186926</td>
     </tr>
     <tr>
       <th>11th</th>
-      <td>432.243643</td>
-      <td>742.953601</td>
+      <td>432.696424</td>
+      <td>743.998767</td>
     </tr>
     <tr>
       <th>12th</th>
-      <td>144.084157</td>
-      <td>291.022804</td>
+      <td>144.135157</td>
+      <td>287.676789</td>
     </tr>
     <tr>
       <th>1st-4th</th>
-      <td>45.979432</td>
-      <td>118.605921</td>
+      <td>44.497940</td>
+      <td>122.298805</td>
     </tr>
     <tr>
       <th>5th-6th</th>
-      <td>83.928899</td>
-      <td>248.621417</td>
+      <td>82.874140</td>
+      <td>248.423575</td>
     </tr>
   </tbody>
 </table>
@@ -811,6 +813,15 @@ private mechanism on each chunk separately.</p></li>
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title"><span class="section-number">6.4. </span>More on Function Sensitivity</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="local-dp.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6.6. </span>Local differential privacy</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
